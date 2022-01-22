@@ -1,9 +1,7 @@
 <template>
   <div id="main">
     <TaskBar></TaskBar>
-    <div style="background: black; height: 100%; width: 100%;">
-
-    </div>
+    <Dashboard></Dashboard>
   </div>
 </template>
 
@@ -11,11 +9,13 @@
 // @ is an alias to /src
 
 import TaskBar from "../components/taskbar.vue";
+import Dashboard from "../components/dashboard.vue";
 
 export default {
   name: 'Home',
   components: {
-    TaskBar
+    TaskBar,
+    Dashboard
   }
 }
 </script>
