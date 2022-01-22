@@ -15,7 +15,6 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
@@ -30,13 +29,13 @@
     "eslint-plugin-vue": "^7.0.0"
   },
   "eslintConfig": {
-    "root": true,
+    "root": false,
     "env": {
       "node": true
     },
+    "quiet": true,
     "extends": [
-      "plugin:vue/vue3-essential",
-      "@vue/standard"
+      "silence"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
