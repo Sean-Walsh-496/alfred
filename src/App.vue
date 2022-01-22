@@ -12,12 +12,9 @@
   --yellow: #eacb89;
   --purple: #b28fad;
   --white: #d5deeb;
-
-
-
-
-
 }
+
+
 #app {
   font-family: monospace;
   -webkit-font-smoothing: antialiased;
