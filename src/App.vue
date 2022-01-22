@@ -5,6 +5,7 @@
 <style>
 :root {
   --background-1: #2e3440;
+  --border: #7e889c;
   --red: #c06069;
   --blue: #89b9c7;
   --green: #a3bd8d;
