@@ -1,11 +1,26 @@
 <template>
-    <div id="main"></div>
+    <div id="main" @click="createPanel"></div>
 </template>
 
 
 <script>
+import { createApp } from '@vue/runtime-dom';
+import Panel from "./panel.vue";
+
+
 export default {
-    name: "Dashboard"
+    name: "Dashboard",
+    components: {
+        Panel
+    },
+    methods: {
+        createPanel($ev){
+            let p = createApp(Panel).mount(this.$el);
+            let newPos = [$ev.pageX, $ev.pageY];
+            console.log(newPos);
+            p.spawn(newPos);
+        }
+    }
 }
 </script>
 
