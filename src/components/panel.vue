@@ -1,7 +1,7 @@
 <template>
     <div id="main" :style="{top: position[1] + 'px', left: position[0] + 'px', height: dims[1] + 'px', width: dims[0] + 'px'}">
         <div id="top-bar">
-
+            <Draggable type="move" :dims="dims" :position="position"/>
         </div>
         <div>
             <slot></slot>
@@ -14,8 +14,13 @@
 
 
 <script>
+import Draggable from "./draggable.vue";
+
 export default {
     name: "Panel",
+    components: {
+        Draggable
+    },
     data() {
         return {
             position: [0,0],
