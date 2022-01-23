@@ -24,7 +24,6 @@ export default {
     },
     methods: {
         addPanel($ev){
-            console.log(this.module)
             let n = this.numOfPanels;
             this.addPanelData($ev);
             let d = document.createElement("div");
