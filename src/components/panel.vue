@@ -25,8 +25,9 @@ export default {
     methods: {
         spawn(newPos){
             this.position = newPos;
-            this.dims = [200,200];
-        }
+            setTimeout(() => this.dims = [100,100], 50);
+
+        },
     }
 }
 </script>
@@ -36,7 +37,7 @@ export default {
         position: absolute;
         background: var(--blue);
         transition-property: height, width;
-        transition-duration: 2s;
+        transition-duration: 0.5s;
         transition-timing-function: ease-in-out;
     }
 </style>
