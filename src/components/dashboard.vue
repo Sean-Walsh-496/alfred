@@ -15,10 +15,10 @@ export default {
     },
     methods: {
         createPanel($ev){
-            let p = createApp(Panel).mount(this.$el);
-            let newPos = [$ev.pageX, $ev.pageY];
-            console.log(newPos);
-            p.spawn(newPos);
+            let d = document.createElement("div");
+            this.$el.appendChild(d);
+            let p = createApp(Panel).mount(d);
+            p.spawn([$ev.pageX, $ev.pageY]);
         }
     }
 }

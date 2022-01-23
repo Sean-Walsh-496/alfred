@@ -1,5 +1,5 @@
 <template>
-    <div id="main" :style="{top: position[1] + 'px', left: position[0] + 'px'}">
+    <div id="main" :style="{top: position[1] + 'px', left: position[0] + 'px', height: dims[1] + 'px', width: dims[0] + 'px'}">
         <div id="top-bar">
 
         </div>
@@ -19,12 +19,13 @@ export default {
     data() {
         return {
             position: [0,0],
+            dims: [0,0]
         }
     },
     methods: {
         spawn(newPos){
-            console.log("working");
             this.position = newPos;
+            this.dims = [200,200];
         }
     }
 }
@@ -33,8 +34,9 @@ export default {
 <style scoped>
     #main {
         position: absolute;
-        width: 500px;
-        height: 100px;
         background: var(--blue);
+        transition-property: height, width;
+        transition-duration: 2s;
+        transition-timing-function: ease-in-out;
     }
 </style>
