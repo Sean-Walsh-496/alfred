@@ -1,9 +1,10 @@
 <template>
-    <div id="main" @click="createPanel"></div>
+    <div id="main" @click="addPanel"></div>
 </template>
 
 
 <script>
+import {mapState, mapMutations} from "vuex";
 import { createApp } from '@vue/runtime-dom';
 import Panel from "./panel.vue";
 
@@ -13,13 +14,21 @@ export default {
     components: {
         Panel
     },
-    methods: {
-        createPanel($ev){
-            let d = document.createElement("div");
-            this.$el.appendChild(d);
-            let p = createApp(Panel).mount(d);
-            p.spawn([$ev.pageX, $ev.pageY]);
+    computed: {
+        numOfPanels(){
+            return this.$store.state.homePage.dashboard.panels.length;
         }
+    },
+    methods: {
+        addPanel($ev){
+            let n = this.numOfPanels;
+            this.addPanelData($ev);
+            let d = document.createElement("div");
+            document.body.appendChild(d);
+            let a = createApp(Panel, {id: n, module: this.$store.state.homePage.dashboard}).mount(d);
+
+        },
+        ...mapMutations(["addPanelData"])
     }
 }
 </script>

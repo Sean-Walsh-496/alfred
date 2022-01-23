@@ -1,7 +1,9 @@
 <template>
-    <div id="main" :style="{top: position[1] + 'px', left: position[0] + 'px', height: dims[1] + 'px', width: dims[0] + 'px'}">
+    <div id="main" :style="{top: position[1] + 'px', left: position[0] + 'px', 
+         height: dimensions[1] + 'px', width: dimensions[0] + 'px'}">
+
         <div id="top-bar">
-            <Draggable type="move" :dims="dims" :position="position"/>
+            <Draggable/>
         </div>
         <div>
             <slot></slot>
@@ -14,25 +16,32 @@
 
 
 <script>
-import Draggable from "./draggable.vue";
+
+import Draggable from "./draggable.vue"; 
 
 export default {
     name: "Panel",
     components: {
         Draggable
     },
-    data() {
-        return {
-            position: [0,0],
-            dims: [0,0]
+    props: {
+        id: {type: Number},
+        module
+    },
+    computed: {
+        position(){
+            const temp = this.module.panels[this.id].position
+            return [temp.x, temp.y];
+        },
+        dimensions(){
+            const temp = this.module.panels[this.id].dimensions
+            return [temp.x, temp.y];
         }
+            
+        
+        
     },
     methods: {
-        spawn(newPos){
-            this.position = newPos;
-            setTimeout(() => this.dims = [100,100], 50);
-
-        },
     }
 }
 </script>
