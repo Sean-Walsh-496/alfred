@@ -14,18 +14,22 @@ export default {
     components: {
         Panel
     },
+    props: {
+        module
+    },
     computed: {
         numOfPanels(){
-            return this.$store.state.homePage.dashboard.panels.length;
+            return this.module.dashboard.panels.length;
         }
     },
     methods: {
         addPanel($ev){
+            console.log(this.module)
             let n = this.numOfPanels;
             this.addPanelData($ev);
             let d = document.createElement("div");
             document.body.appendChild(d);
-            let a = createApp(Panel, {id: n, module: this.$store.state.homePage.dashboard}).mount(d);
+            createApp(Panel, {id: n, module: this.$store.state.homePage.dashboard}).mount(d);
 
         },
         ...mapMutations(["addPanelData"])
