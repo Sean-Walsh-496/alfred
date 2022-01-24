@@ -17,7 +17,8 @@
 
 <script>
 
-import Draggable from "./draggable.vue"; 
+import Draggable from "./draggable.vue";
+import {mapMutations} from "vuex"; 
 
 export default {
     name: "Panel",
@@ -42,6 +43,7 @@ export default {
         
     },
     methods: {
+        ...mapMutations(["movePanel"])
     }
 }
 </script>

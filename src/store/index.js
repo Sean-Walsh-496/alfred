@@ -1,6 +1,9 @@
 import { createStore } from 'vuex'
 
 export default createStore({
+  state: {
+    mouseDown: false
+  },
   modules: {
     homePage: {
       state: {
@@ -23,6 +26,12 @@ export default createStore({
             }
           };
           state.dashboard.panels.push(payload);
+        },
+
+        movePanel(state, payload){
+          let target = state.dashboard.panels[payload.id];
+          target.x += payload.delta_x;
+          target.y += payload.delta_y;
         }
       },
       actions: {
