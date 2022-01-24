@@ -38,9 +38,6 @@ export default {
             const temp = this.module.panels[this.id].dimensions
             return [temp.x, temp.y];
         }
-            
-        
-        
     },
     methods: {
         ...mapMutations(["movePanel"])
