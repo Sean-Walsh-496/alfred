@@ -9,8 +9,10 @@ export default createStore({
   },
   mutations: {
     moveMouseTarget(state, e){
-      state.mouse.target.x += e.movementX;
-      state.mouse.target.y += e.movementY;
+      if (state.mouse.target != null){
+        state.mouse.target.x += e.movementX;
+        state.mouse.target.y += e.movementY;
+      }
     }
   },
   modules: {
