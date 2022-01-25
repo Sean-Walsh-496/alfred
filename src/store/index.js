@@ -2,7 +2,16 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    mouseDown: false
+    mouse: {
+      down: false,
+      target: null
+    }
+  },
+  mutations: {
+    moveMouseTarget(state, e){
+      state.mouse.target.x += e.movementX;
+      state.mouse.target.y += e.movementY;
+    }
   },
   modules: {
     homePage: {
@@ -14,11 +23,11 @@ export default createStore({
         }
       },
       mutations: {
-        addPanelData(state, $ev) {
+        addPanelData(state, e) {
           let payload = {
             position: {
-              x: $ev.pageX,
-              y: $ev.pageY
+              x: e.pageX,
+              y: e.pageY
             },
             dimensions: {
               x: 500,
