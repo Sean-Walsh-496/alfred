@@ -1,19 +1,22 @@
 <template>
-    <div class="draggable" @click="test"></div>    
+    <div class="draggable" @click="pickUpParent"></div>    
 </template>
 
 
 <script>
+import {mapMutations} from "vuex";
+
 export default {
     name: "draggable",
-    props: ["type", "dims", "position"],
+    props: ["type", "parent"],
     methods: {
-        test(){
-            console.table([this.type, this.dims, this.position]);
-        },
         pickUpParent(){
-            
-        }
+            console.log(this.parent)
+        },
+        putDownParent(){
+
+        },
+        ...mapMutations(["pickUpPanel", "putDownPanel"])
     }
     
 }
