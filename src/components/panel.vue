@@ -3,7 +3,7 @@
          height: dimensions[1] + 'px', width: dimensions[0] + 'px'}">
 
         <div id="top-bar">
-            <Draggable/>
+            <Draggable type="move" :parent="this"/>
         </div>
         <div>
             <slot></slot>
