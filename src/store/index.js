@@ -23,20 +23,34 @@ export default createStore({
             dimensions: {
               x: 500,
               y: 500
-            }
+            },
+            pickedUp: false,
           };
           state.dashboard.panels.push(payload);
         },
 
         movePanel(state, payload){
-          let target = state.dashboard.panels[payload.id];
+          let target = this.targetPanel(state, payload);
           target.x += payload.delta_x;
           target.y += payload.delta_y;
+        },
+
+        pickUpPanel(state, payload){
+          this.targetPanel(state, payload).pickedUp = true;
+        },
+
+        putDownPanel(){
+          this.targetPanel(state, payload).pickedUp = false;
         }
       },
       actions: {
 
       },
+      getters: {
+        targetPanel(state, payload){
+          return state.dashboard.panels[payload.id];
+        }
+      }
       
     },
     settings: {
