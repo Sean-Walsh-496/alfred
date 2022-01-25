@@ -12,3 +12,7 @@ addEventListener("mouseup", (e) => {
 addEventListener("mousedown", (e) => {
     store.state.mouse.down = true;
 });
+
+addEventListener("mousemove", (e) =>{
+    store.commit("moveMouseTarget", e);
+});
