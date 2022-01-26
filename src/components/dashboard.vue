@@ -24,11 +24,11 @@ export default {
     },
     methods: {
         addPanel($ev){
-            this.addPanelData($ev); // creates the data in the $store
-
             let n = this.numOfPanels;
             let wrapper = document.createElement("div");
             
+            this.addPanelData($ev); // creates the data in the $store
+
             document.body.appendChild(wrapper);
             createApp(Panel, {id: n, module: this.$store.state.homePage.dashboard}).use(this.$store).mount(wrapper);
 
