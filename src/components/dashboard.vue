@@ -28,7 +28,7 @@ export default {
             this.addPanelData($ev);
             let d = document.createElement("div");
             document.body.appendChild(d);
-            createApp(Panel, {id: n, module: this.$store.state.homePage.dashboard}).mount(d);
+            createApp(Panel, {id: n, module: this.$store.state.homePage.dashboard}).use(this.$store).mount(d);
 
         },
         ...mapMutations(["addPanelData"])

@@ -10,8 +10,7 @@ export default createStore({
   mutations: {
     moveMouseTarget(state, e){
       if (state.mouse.target != null){
-        state.mouse.target.x += e.movementX;
-        state.mouse.target.y += e.movementY;
+        state.mouse.target.move(e.movementX, e.movementY);
       }
     }
   },
@@ -41,26 +40,14 @@ export default createStore({
         },
 
         movePanel(state, payload){
-          let target = this.targetPanel(state, payload);
-          target.x += payload.delta_x;
-          target.y += payload.delta_y;
+          let target = state.dashboard.panels[payload.id];
+          target.position.x += payload.delta_x;
+          target.position.y += payload.delta_y;
         },
-
-        pickUpPanel(state, payload){
-          this.targetPanel(state, payload).pickedUp = true;
-        },
-
-        putDownPanel(){
-          this.targetPanel(state, payload).pickedUp = false;
-        }
       },
       actions: {
-
       },
       getters: {
-        targetPanel(state, payload){
-          return state.dashboard.panels[payload.id];
-        }
       }
       
     },

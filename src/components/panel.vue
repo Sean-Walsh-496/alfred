@@ -1,6 +1,6 @@
 <template>
     <div id="main" :style="{top: position[1] + 'px', left: position[0] + 'px', 
-         height: dimensions[1] + 'px', width: dimensions[0] + 'px'}">
+         height: dimensions[1] + 'px', width: dimensions[0] + 'px'}" @click="test">
 
         <div id="top-bar">
             <Draggable type="move" :parent="this"/>
@@ -25,10 +25,7 @@ export default {
     components: {
         Draggable
     },
-    props: {
-        id: {type: Number},
-        module
-    },
+    props: ["id", "module"],
     computed: {
         position(){
             const temp = this.module.panels[this.id].position
@@ -40,6 +37,13 @@ export default {
         }
     },
     methods: {
+        test(){
+            console.log(this.$store)
+            this.move(1,1);
+        },
+        move(delta_x, delta_y){
+            this.movePanel({delta_x: delta_x, delta_y: delta_y, id: this.id});
+        },
         ...mapMutations(["movePanel"])
     }
 }

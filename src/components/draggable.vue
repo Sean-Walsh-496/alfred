@@ -1,5 +1,5 @@
 <template>
-    <div class="draggable" @click="pickUpParent"></div>    
+    <div class="draggable" @mousedown="pickUpParent"></div>    
 </template>
 
 
@@ -10,8 +10,8 @@ export default {
     name: "draggable",
     props: ["type", "parent"],
     methods: {
-        pickUpParent(){
-            console.log(this.parent)
+        pickUpParent(e){
+            this.$store.state.mouse.target = this.parent;
         },
         putDownParent(){
 
