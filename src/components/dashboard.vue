@@ -5,7 +5,7 @@
 
 <script>
 import {mapMutations} from "vuex";
-import { createApp } from '@vue/runtime-dom';
+import {createApp} from '@vue/runtime-dom';
 import Panel from "./panel.vue";
 
 
@@ -24,11 +24,13 @@ export default {
     },
     methods: {
         addPanel($ev){
+            this.addPanelData($ev); // creates the data in the $store
+
             let n = this.numOfPanels;
-            this.addPanelData($ev);
-            let d = document.createElement("div");
-            document.body.appendChild(d);
-            createApp(Panel, {id: n, module: this.$store.state.homePage.dashboard}).use(this.$store).mount(d);
+            let wrapper = document.createElement("div");
+            
+            document.body.appendChild(wrapper);
+            createApp(Panel, {id: n, module: this.$store.state.homePage.dashboard}).use(this.$store).mount(wrapper);
 
         },
         ...mapMutations(["addPanelData"])
