@@ -5,12 +5,12 @@ import store from './store'
 
 createApp(App).use(store).use(router).mount('#app')
 
-addEventListener("mouseup", (e) => {
+addEventListener("mouseup", () => {
     store.state.mouse.down = false;
     store.state.mouse.target = null;
 });
 
-addEventListener("mousedown", (e) => {
+addEventListener("mousedown", () => {
     store.state.mouse.down = true;
 });
 
