@@ -56,5 +56,6 @@ export default {
         transition-property: height, width;
         transition-duration: 0.5s;
         transition-timing-function: ease-in-out;
+        border: 2px solid var(--border)
     }
 </style>
