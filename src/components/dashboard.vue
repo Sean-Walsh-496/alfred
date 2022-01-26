@@ -4,7 +4,7 @@
 
 
 <script>
-import {mapState, mapMutations} from "vuex";
+import {mapMutations} from "vuex";
 import { createApp } from '@vue/runtime-dom';
 import Panel from "./panel.vue";
 
