@@ -1,5 +1,5 @@
 <template>
-    <div id="main" :style="{top: position[1] + 'px', left: position[0] + 'px', 
+    <div class="panel" :style="{top: position[1] + 'px', left: position[0] + 'px', 
          height: dimensions[1] + 'px', width: dimensions[0] + 'px'}" @click="test">
 
         <div id="top-bar">
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style scoped>
-    #main {
+    .panel {
         position: absolute;
         background: var(--blue);
         transition-property: height, width;

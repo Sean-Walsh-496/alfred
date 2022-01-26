@@ -1,5 +1,5 @@
 <template>
-    <div id="bar">
+    <div class="taskbar">
 
     </div>
 </template>
@@ -12,7 +12,7 @@ export default {
 </script>
 
 <style scoped>
-    #bar {
+    .taskbar {
         height: 100%;
         width: 20%;
         max-width: 100px;

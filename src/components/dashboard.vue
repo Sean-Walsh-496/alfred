@@ -1,5 +1,5 @@
 <template>
-    <div id="main" @click="addPanel"></div>
+    <div class="dashboard" @click="addPanel"></div>
 </template>
 
 
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style scoped>
-    #main{
+    .dashboard{
         background: var(--background-1);
         height: 100%;
         width: 100%;
