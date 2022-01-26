@@ -4,19 +4,14 @@
 
 
 <script>
-import {mapMutations} from "vuex";
 
 export default {
     name: "draggable",
     props: ["type", "parent"],
     methods: {
-        pickUpParent(e){
+        pickUpParent(){
             this.$store.state.mouse.target = this.parent;
         },
-        putDownParent(){
-
-        },
-        ...mapMutations(["pickUpPanel", "putDownPanel"])
     }
     
 }
