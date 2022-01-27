@@ -44,6 +44,11 @@ export default createStore({
           target.position.x += payload.delta_x;
           target.position.y += payload.delta_y;
         },
+        morphPanel(state, payload){
+          let target = state.dashboard.panels[payload.id];
+          target.dimensions.x += payload.delta_x;
+          target.dimensions.y += payload.delta_y;
+        }
       },
       actions: {
       },
