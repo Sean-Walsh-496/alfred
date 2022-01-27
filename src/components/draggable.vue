@@ -6,7 +6,7 @@
 <script>
 
 export default {
-    name: "draggable",
+    name: "Draggable",
     props: ["type", "parent"],
     methods: {
         pickUpParent(){
