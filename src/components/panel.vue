@@ -2,15 +2,23 @@
     <div class="panel" :style="{top: position[1] + 'px', left: position[0] + 'px', 
          height: dimensions[1] + 'px', width: dimensions[0] + 'px'}">
 
-        <div id="top-bar">
-            <Draggable type="move" :parent="this"/>
-        </div>
-        <div>
-            <slot></slot>
-        </div>
-        <div>
+        <DynamicBorder side='W'/>
+        <div style="height: 100%; width: 100%; display: flex; flex-direction: column">
+            <div class="top-bar">
+                <DynamicBorder side='N'/>
+                <Draggable type="move" :parent="this"/>
+            </div>
+            <div class="content">
+                <slot></slot>
+            </div>
+            <div class="top-bar">
+                <DynamicBorder side='S'/>
 
+            </div>
+            
         </div>
+        <DynamicBorder side='E'/>
+
     </div>
 </template>
 
@@ -18,12 +26,14 @@
 <script>
 
 import Draggable from "./draggable.vue";
+import DynamicBorder from "./dynamicBorder.vue";
 import {mapMutations} from "vuex"; 
 
 export default {
     name: "Panel",
     components: {
-        Draggable
+        Draggable,
+        DynamicBorder
     },
     props: ["id", "module"],
     computed: {
@@ -52,6 +62,20 @@ export default {
         transition-property: height, width;
         transition-duration: 0.5s;
         transition-timing-function: ease-in-out;
-        border: 2px solid var(--border)
+        border: 2px solid var(--border);
+        display: flex;
+        flex-direction: row;
     }
+
+    .top-bar{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: max-content;
+    }
+
+    .content{
+        flex: 1 1 auto
+    }
+
 </style>

@@ -1,14 +1,8 @@
 <template>
-<style>
-    :root{
-        --border-height {{ borderHeight }};
-        --border-width {{ borderWidth }};
-        --direction {{borderDirection}}
-    }
-</style>
-<div class="corner"></div>
 
-    <div class="dynamic-border">
+    <div class="dynamic-border" :style="{height: borderHeight, width: borderWidth, 
+         'flex-direction': borderDirection}">
+        <div class="corner"></div>
         <div class="filler"></div>
         <div class="corner"></div>
     </div>    
@@ -25,7 +19,7 @@ export default {
     },
     data(){
         let height, width, dir;
-        switch (this.type){
+        switch (this.side){
             case 'N':
             case 'S':
                 height = "1px";
@@ -53,17 +47,15 @@ export default {
 
 .dynamic-border{
     display: flex;
-    flex-direction: var(--direction);
     background: var(--border);
-    height: var(--border-height);
-    width: var(--border-width);
 
 }
+/*
 .filler{
 
 }
 .corner{
 
 }
-
+*/
 </style>
