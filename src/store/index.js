@@ -46,6 +46,7 @@ export default createStore({
         },
         morphPanel(state, payload){
           let target = state.dashboard.panels[payload.id];
+          console.log(target);
           target.dimensions.x += payload.delta_x;
           target.dimensions.y += payload.delta_y;
         }
