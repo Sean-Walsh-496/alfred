@@ -1,5 +1,20 @@
 import { createStore } from 'vuex'
 
+//helpers
+function snapPoint(x,y,size){
+  let output = {x: x, y: y};
+  for (let i of ['x', 'y']){
+    let diff = output[i] % size;
+
+    if (diff >= 10) output[i] += 20 - diff;
+    
+    else output[i] -= diff
+  }
+  console.log(output);
+  return output;
+}
+
+
 export default createStore({
   state: {
     mouse: {
@@ -52,20 +67,13 @@ export default createStore({
         },
         morphPanel(state, payload){
           let target = state.dashboard.panels[payload.id];
-          console.log(target);
           target.dimensions.x += payload.delta_x;
           target.dimensions.y += payload.delta_y;
         },
-        snapPanel(state, payload){
-          let target = state.dashboard.panels[payload.id];
-          for (let i in ['x', 'y']){
-            let j = ['x', 'y'][i];
-            let diff = target.position[j] % state.dashboard.cellSize;
-
-            if (diff >= 10) target.position[j] += 20 - diff;
-            
-            else target.position[j] -= diff
-          }
+        snapPanel(state, id){
+          let target = state.dashboard.panels[id];
+          console.log(target);
+          target.position = snapPoint(target.position.x, target.position.y, state.dashboard.cellSize);
         }
       },
       actions: {
