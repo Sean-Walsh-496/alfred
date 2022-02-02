@@ -10,7 +10,6 @@ function snapPoint(x,y,size){
     
     else output[i] -= diff
   }
-  console.log(output);
   return output;
 }
 
@@ -72,7 +71,6 @@ export default createStore({
         },
         snapPanel(state, id){
           let target = state.dashboard.panels[id];
-          console.log(target);
           target.position = snapPoint(target.position.x, target.position.y, state.dashboard.cellSize);
         }
       },
