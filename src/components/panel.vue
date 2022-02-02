@@ -2,22 +2,22 @@
     <div class="panel" :style="{top: position[1] + 'px', left: position[0] + 'px', 
          height: dimensions[1] + 'px', width: dimensions[0] + 'px'}">
 
-        <DynamicBorder side='W'/>
+        <DynamicBorder side='W' :parent="this"/>
         <div style="height: 100%; width: 100%; display: flex; flex-direction: column">
             <div class="top-bar">
-                <DynamicBorder side='N'/>
+                <DynamicBorder side='N' :parent="this"/>
                 <Draggable type="move" :parent="this"/>
             </div>
             <div class="content">
                 <slot></slot>
             </div>
             <div class="top-bar">
-                <DynamicBorder side='S'/>
+                <DynamicBorder side='S' :parent="this"/>
 
             </div>
             
         </div>
-        <DynamicBorder side='E'/>
+        <DynamicBorder side='E' :parent="this"/>
 
     </div>
 </template>
@@ -59,9 +59,11 @@ export default {
     .panel {
         position: absolute;
         background: var(--blue);
+        /*
         transition-property: height, width;
         transition-duration: 0.5s;
         transition-timing-function: ease-in-out;
+        */
         border: 2px solid var(--border);
         display: flex;
         flex-direction: row;
