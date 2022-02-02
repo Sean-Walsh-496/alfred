@@ -51,7 +51,7 @@ export default {
             this.movePanel({delta_x: delta_x, delta_y: delta_y, id: this.id});
         },
         drop(){
-            this.snapPanel({id: this.id});
+            this.snapPanel(this.id);
         },
         ...mapMutations(["movePanel", "snapPanel"])
     }
