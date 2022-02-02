@@ -36,9 +36,6 @@ export default {
                     break;
                 
             }
-
-
-
         },
         ...mapMutations(["morphPanel", "movePanel"])
     },
