@@ -14,6 +14,7 @@ addEventListener("mouseup", () => {
 
 addEventListener("mousedown", () => {
     store.state.mouse.down = true;
+    console.log(store.state.mouse.target)
 });
 
 addEventListener("mousemove", (e) =>{

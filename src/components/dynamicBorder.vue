@@ -3,7 +3,7 @@
     <div class="dynamic-border" :style="{height: borderHeight, width: borderWidth, 
          'flex-direction': borderDirection}">
         <div class="corner" @mousedown="dragTLCorner"></div>
-        <div class="filler" @mousedown="dragFiller"></div>
+        <div class="filler" @mousedown="targetFiller"></div>
         <div class="corner" @mousedown="dragBRCorner"></div>
     </div>    
 </template>
@@ -15,6 +15,10 @@ export default {
     name:"Dynamic-border",
     props: ["side", "parent"],
     methods: {
+        targetFiller(){
+            this.$store.state.mouse.target = this;
+        },
+        drop(){},
         move(delta_x, delta_y){
             switch (this.side){
                 case 'N':

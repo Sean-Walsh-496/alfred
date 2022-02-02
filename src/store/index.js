@@ -49,7 +49,6 @@ export default createStore({
           let target = state.dashboard.panels[payload.id];
           target.position.x += payload.delta_x;
           target.position.y += payload.delta_y;
-          console.log("moving")
         },
         morphPanel(state, payload){
           let target = state.dashboard.panels[payload.id];
