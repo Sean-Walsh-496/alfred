@@ -15,25 +15,6 @@ export default {
     name:"Dynamic-border",
     props: ["side", "parent"],
     methods: {
-        dragFiller(){
-            this.$store.state.mouse.target = this;
-            console.log(this.parent);
-            
-        },
-        dragNorth(delta_x, delta_y){
-
-
-        },
-        dragTLCorner(){
-            this.$store.state.mouse.target = this;
-            console.log("TLCorner");
-
-        },
-        dragBRCorner(){
-            this.$store.state.mouse.target = this;
-            console.log("BRCorner");
-
-        },
         move(delta_x, delta_y){
             switch (this.side){
                 case 'N':
