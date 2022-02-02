@@ -20,6 +20,10 @@ export default {
             console.log(this.parent);
             
         },
+        dragNorth(delta_x, delta_y){
+
+
+        },
         dragTLCorner(){
             this.$store.state.mouse.target = this;
             console.log("TLCorner");
@@ -31,13 +35,31 @@ export default {
 
         },
         move(delta_x, delta_y){
-            console.log(this.parent)
-            this.morphPanel({delta_x: delta_x, delta_y: delta_y, id: this.parent.id});
+            switch (this.side){
+                case 'N':
+                    this.morphPanel({delta_x: 0, delta_y: -delta_y, id: this.parent.id});
+                    this.movePanel({delta_x: 0, delta_y: delta_y, id: this.parent.id});
+                    break;
+
+                case 'E':
+                    this.morphPanel({delta_x: delta_x, delta_y: 0, id: this.parent.id});
+                    this.movePanel({delta_x: 0, delta_y: 0, id: this.parent.id});
+                    break;
+                case 'S':
+                    this.morphPanel({delta_x: 0, delta_y: delta_y, id: this.parent.id});
+                    this.movePanel({delta_x: 0, delta_y: 0, id: this.parent.id});
+                    break;
+                case 'W':
+                    this.morphPanel({delta_x: -delta_x, delta_y: 0, id: this.parent.id});
+                    this.movePanel({delta_x: delta_x, delta_y: 0, id: this.parent.id});
+                    break;
+                
+            }
 
 
 
         },
-        ...mapMutations(["morphPanel"])
+        ...mapMutations(["morphPanel", "movePanel"])
     },
     data(){
         let height, width, dir;
