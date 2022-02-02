@@ -18,7 +18,9 @@ export default {
         targetFiller(){
             this.$store.state.mouse.target = this;
         },
-        drop(){},
+        drop(){
+            this.snapPanel(this.parent.id)
+        },
         move(delta_x, delta_y){
             switch (this.side){
                 case 'N':
@@ -41,7 +43,7 @@ export default {
                 
             }
         },
-        ...mapMutations(["morphPanel", "movePanel"])
+        ...mapMutations(["morphPanel", "movePanel", "snapPanel"])
     },
     data(){
         let height, width, dir;

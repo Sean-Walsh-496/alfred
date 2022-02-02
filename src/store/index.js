@@ -64,14 +64,22 @@ export default createStore({
           target.position.x += payload.delta_x;
           target.position.y += payload.delta_y;
         },
+
         morphPanel(state, payload){
           let target = state.dashboard.panels[payload.id];
           target.dimensions.x += payload.delta_x;
           target.dimensions.y += payload.delta_y;
         },
+
         snapPanel(state, id){
           let target = state.dashboard.panels[id];
           target.position = snapPoint(target.position.x, target.position.y, state.dashboard.cellSize);
+        
+          //get the bottom-right corner position if size adjusted
+          let corner = [target.dimensions.x, target.dimensions.y];
+          let new_corner = snapPoint(...corner, state.dashboard.cellSize);
+          target.dimensions.x = new_corner.x;
+          target.dimensions.y = new_corner.y;        
         }
       },
       actions: {
