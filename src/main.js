@@ -6,8 +6,10 @@ import store from './store'
 createApp(App).use(store).use(router).mount('#app')
 
 addEventListener("mouseup", () => {
+    store.commit("dropMouseTarget");
     store.state.mouse.down = false;
     store.state.mouse.target = null;
+
 });
 
 addEventListener("mousedown", () => {

@@ -50,7 +50,10 @@ export default {
         move(delta_x, delta_y){
             this.movePanel({delta_x: delta_x, delta_y: delta_y, id: this.id});
         },
-        ...mapMutations(["movePanel"])
+        drop(){
+            this.snapPanel({id: this.id});
+        },
+        ...mapMutations(["movePanel", "snapPanel"])
     }
 }
 </script>

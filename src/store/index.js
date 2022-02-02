@@ -12,12 +12,18 @@ export default createStore({
       if (state.mouse.target != null){
         state.mouse.target.move(e.movementX, e.movementY);
       }
+    },
+    dropMouseTarget(state){
+      if (state.mouse.target != null){
+        state.mouse.target.drop();
+      }
     }
   },
   modules: {
     homePage: {
       state: {
         dashboard: {
+          cellSize: 30,
           panels: [
 
           ]
@@ -43,12 +49,24 @@ export default createStore({
           let target = state.dashboard.panels[payload.id];
           target.position.x += payload.delta_x;
           target.position.y += payload.delta_y;
+          console.log("moving")
         },
         morphPanel(state, payload){
           let target = state.dashboard.panels[payload.id];
           console.log(target);
           target.dimensions.x += payload.delta_x;
           target.dimensions.y += payload.delta_y;
+        },
+        snapPanel(state, payload){
+          let target = state.dashboard.panels[payload.id];
+          for (let i in ['x', 'y']){
+            let j = ['x', 'y'][i];
+            let diff = target.position[j] % state.dashboard.cellSize;
+
+            if (diff >= 10) target.position[j] += 20 - diff;
+            
+            else target.position[j] -= diff
+          }
         }
       },
       actions: {
