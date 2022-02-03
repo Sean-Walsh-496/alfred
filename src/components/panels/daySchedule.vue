@@ -1,11 +1,11 @@
 <template>
     <div class="content">
         <div class="day">
-            <ul class="hour-list">
+            <ol class="hour-list">
                 <li v-for="i in hours" :key="i.position">
                     <Hour :parent="this" :id="i.position"/>
                 </li>
-            </ul>
+            </ol>
         </div>
     </div>
     
@@ -58,5 +58,13 @@ export default {
     flex-direction: column;
 
 }
+
+ol li{
+    list-style-type: none;
+}
+ol {
+    padding: 0px;
+}
+
 
 </style>
