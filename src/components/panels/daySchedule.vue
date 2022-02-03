@@ -1,8 +1,8 @@
 <template>
     <div class="content">
         <div class="day">
-            <ol class="hour-list">
-                <li v-for="i in hours" :key="i.position">
+            <ol class="hour-list" style="height: 100%">
+                <li v-for="i in hours" :key="i.position" style="height: 4%">
                     <Hour :parent="this" :id="i.position"/>
                 </li>
             </ol>
