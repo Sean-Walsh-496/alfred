@@ -9,7 +9,7 @@
                 <Draggable type="move" :parent="this"/>
             </div>
             <div class="content">
-                <DaySchedule/>
+                <DaySchedule :parent="this"/>
             </div>
             <div class="top-bar">
                 <DynamicBorder side='S' :parent="this"/>
