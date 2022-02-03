@@ -1,5 +1,5 @@
 <template>
-    <div class="taskbar" :style="{width: $store.state.taskbar.width + 'px'}">
+    <div class="taskbar" :style="{width: $store.state.homePage.taskbar.width + 'px'}">
 
     </div>
 </template>
