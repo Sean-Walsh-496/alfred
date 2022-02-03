@@ -27,7 +27,6 @@ function outOfBounds(pos, size, bPos, bSize){
       output[i] -= offset;
     }
   }
-  console.log(output);
   return output;
 }
 
