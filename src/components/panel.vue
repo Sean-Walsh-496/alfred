@@ -9,7 +9,7 @@
                 <Draggable type="move" :parent="this"/>
             </div>
             <div class="content">
-                <slot></slot>
+                <DaySchedule/>
             </div>
             <div class="top-bar">
                 <DynamicBorder side='S' :parent="this"/>
@@ -28,12 +28,14 @@
 import Draggable from "./draggable.vue";
 import DynamicBorder from "./dynamicBorder.vue";
 import {mapMutations} from "vuex"; 
+import DaySchedule from "./panels/daySchedule.vue";
 
 export default {
     name: "Panel",
     components: {
         Draggable,
-        DynamicBorder
+        DynamicBorder,
+        DaySchedule
     },
     props: ["id", "module"],
     computed: {
