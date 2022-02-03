@@ -1,5 +1,5 @@
 <template>
-    <div class="taskbar">
+    <div class="taskbar" :style="{width: $store.state.taskbar.width + 'px'}">
 
     </div>
 </template>
@@ -14,8 +14,6 @@ export default {
 <style scoped>
     .taskbar {
         height: 100%;
-        width: 20%;
-        max-width: 100px;
         background: var(--background-1);
         border-right: 2px solid var(--border);  
     }

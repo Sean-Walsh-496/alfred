@@ -19,6 +19,9 @@ export default createStore({
     mouse: {
       down: false,
       target: null
+    },
+    taskbar: {
+      width: 100
     }
   },
   mutations: {
