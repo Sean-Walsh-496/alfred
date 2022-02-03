@@ -1,7 +1,11 @@
 <template>
     <div class="content">
         <div class="day">
-
+            <ul class="hour-list">
+                <li v-for="i in hours" :key="i.position">
+                    <Hour :parent="this" :id="i.position"/>
+                </li>
+            </ul>
         </div>
     </div>
     
@@ -9,8 +13,23 @@
 
 
 <script>
+import Hour from "./hour.vue";
+
 export default {
-    name: "DaySchedule"
+    name: "DaySchedule",
+    components: {
+        Hour
+    },
+    props: ["parent"],
+    data(){
+        let times = [];
+        for (let i = 0; i < 24; i++){
+            times.push({position: i + 1});
+        }
+        return {
+            hours: times
+        };
+    }
 }
 </script>
 
@@ -31,6 +50,12 @@ export default {
     display: flex;
     flex-direction: column;
 
+
+}
+
+.hour-list{
+    display: flex;
+    flex-direction: column;
 
 }
 
