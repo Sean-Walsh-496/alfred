@@ -30,7 +30,6 @@ function outOfBounds(pos, size, bPos, bSize){
   return output;
 }
 
-
 export default createStore({
   state: {
     mouse: {
@@ -64,8 +63,9 @@ export default createStore({
         }
       },
       mutations: {
-        addPanelData(state, e) {
-          let payload = {
+        addPanelData(state, payload) {
+          let e = payload.e;
+          let data = {
             position: {
               x: e.pageX,
               y: e.pageY
@@ -75,11 +75,27 @@ export default createStore({
               y: 500
             },
             content: {
-              
+
             },
             pickedUp: false,
           };
-          state.dashboard.panels.push(payload);
+          state.dashboard.panels.push(data);
+
+          switch (payload.type){
+            case "day-schedule":
+              this.commit("addDayScheduleData", state.dashboard.panels.length - 1);
+              break;
+          }
+
+        },
+
+        addDayScheduleData(state, id){
+          let target = state.dashboard.panels[id];
+          let times = [];
+          for (let i = 0; i < 24; i++){
+              times.push({position: i + 1});
+          }
+          target.content.hours = times;
         },
 
         movePanel(state, payload){

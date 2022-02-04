@@ -2,7 +2,8 @@
     <div class="content">
         <div class="day">
             <ol class="hour-list" style="height: 100%">
-                <li v-for="i in hours" :key="i.position" style="height: 4%">
+                <li v-for="i in $store.state.homePage.dashboard.panels[parent.id].content.hours" 
+                    :key="i.position" style="height: 4%">
                     <Hour :parent="this" :id="i.position"/>
                 </li>
             </ol>
@@ -21,15 +22,6 @@ export default {
         Hour
     },
     props: ["parent"],
-    data(){
-        let times = [];
-        for (let i = 0; i < 24; i++){
-            times.push({position: i + 1});
-        }
-        return {
-            hours: times
-        };
-    }
 }
 </script>
 

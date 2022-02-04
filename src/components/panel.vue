@@ -9,7 +9,7 @@
                 <Draggable type="move" :parent="this"/>
             </div>
             <div class="content">
-                <DaySchedule :parent="this"/>
+                <DaySchedule :v-if="type == 'day-schedule'" :parent="this"/>
             </div>
             <div class="top-bar">
                 <DynamicBorder side='S' :parent="this"/>
@@ -37,7 +37,7 @@ export default {
         DynamicBorder,
         DaySchedule
     },
-    props: ["id", "module"],
+    props: ["id", "module", "type"],
     computed: {
         position(){
             const temp = this.module.panels[this.id].position
