@@ -74,6 +74,9 @@ export default createStore({
               x: 500,
               y: 500
             },
+            content: {
+              
+            },
             pickedUp: false,
           };
           state.dashboard.panels.push(payload);
