@@ -31,7 +31,7 @@ export default {
             let payload = {parent: this.panel, id: this.id};
             this.addActivity(payload);
 
-            //add element
+            //add GUI element
             let wrapper = document.createElement("div");
             document.body.appendChild(wrapper);
             createApp(Activity).use(this.$store).mount(wrapper);
