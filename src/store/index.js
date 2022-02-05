@@ -93,7 +93,7 @@ export default createStore({
           let target = state.dashboard.panels[id];
           let times = [];
           for (let i = 0; i < 24; i++){
-              times.push({position: i + 1});
+              times.push({position: i + 1, content: null});
           }
           target.content.hours = times;
         },
@@ -124,7 +124,21 @@ export default createStore({
           target.position = outOfBounds(target.position, target.dimensions, 
                             {x: state.taskbar.width, y: 0}, {x: 9999999, y: 9999999});
 
+        },
+
+        addActivity(state, payload){
+          let target = state.dashboard.panels[payload.parent.id].content.hours[payload.id - 1];
+          
+          let activity = {
+            name: "",
+            duration: 1,
+            color: "blue",
+          };
+          
+          target.content = activity;
+          
         }
+
       },
       actions: {
       },

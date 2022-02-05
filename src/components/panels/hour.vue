@@ -1,21 +1,45 @@
 <template>
-    <div class="content" :style="{'border-bottom-color': borderColor}">
+    <div class="content" :style="{'border-bottom-color': borderColor}" @click="clicked">
         
     </div>
     
 </template>
 
 <script>
+import { createApp } from '@vue/runtime-dom';
+
+import {mapMutations} from "vuex";
+import Activity from "./activity.vue";
+
 export default {
     name: "Hour",
     props: ["parent", "id"],
+    components: {
+        Activity
+    },
     data(){
         let borderColor = "transparent";
         if (this.id == 24) borderColor = "var(--border)";
         return {
-            borderColor: borderColor
+            borderColor: borderColor,
+            panel: this.parent.parent
         };
-    }
+    },
+    methods: {
+        clicked(){
+            //add data
+            let payload = {parent: this.panel, id: this.id};
+            this.addActivity(payload);
+
+            //add element
+            let wrapper = document.createElement("div");
+            document.body.appendChild(wrapper);
+            createApp(Activity).use(this.$store).mount(wrapper);
+
+        },
+        ...mapMutations(["addActivity"])
+
+    },
 
 }
 </script>
