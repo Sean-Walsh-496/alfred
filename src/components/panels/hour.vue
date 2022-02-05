@@ -34,7 +34,7 @@ export default {
             //add GUI element
             let wrapper = document.createElement("div");
             document.body.appendChild(wrapper);
-            createApp(Activity).use(this.$store).mount(wrapper);
+            createApp(Activity, {parent: this, day: this.parent}).use(this.$store).mount(wrapper);
 
         },
         ...mapMutations(["addActivity"])
