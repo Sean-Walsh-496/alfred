@@ -1,5 +1,5 @@
 <template>
-    <div class="content" :style="{top: rect.y + 'px', left: rect.x + 'px', width: (rect.right - rect.x) + 'px', height: (rect.bottom - rect.y) + 'px'}">
+    <div class="content" :style="{top: rect.y + 'px', left: rect.x + 'px', width: (rect.right - rect.x) + 'px', height: (rect.bottom - rect.y) + 'px'}" @click="test">
 
     </div>
     
@@ -20,6 +20,10 @@ export default {
         };
     },
     methods: {
+        test(){
+            console.log(this.panelData);
+            console.log(this.$el.getBoundingClientRect());
+        }
     },
     computed: {
         panelData(){
@@ -28,8 +32,10 @@ export default {
     },
     watch: {
         panelData: {
-            handler(){
-                this.rect = this.parent.$el.getBoundingClientRect();
+            handler(new_, old){
+                //jank as hell timeout. The Vuex store is updating its position, but getBoundingClientRect
+                // is just too slow apparently.
+                setTimeout(() => {this.rect = this.parent.$el.getBoundingClientRect(), 10});
             },
             deep: true
         }

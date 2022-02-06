@@ -121,9 +121,9 @@ export default createStore({
           target.dimensions.y = new_corner.y;
           
           //checks if out of bounds
-          target.position = outOfBounds(target.position, target.dimensions, 
+          let newPos = outOfBounds(target.position, target.dimensions, 
                             {x: state.taskbar.width, y: 0}, {x: 9999999, y: 9999999});
-
+          target.position.x = newPos.x; target.position.y = newPos.y;
         },
 
         addActivity(state, payload){
