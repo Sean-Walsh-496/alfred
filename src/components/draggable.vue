@@ -10,7 +10,7 @@ export default {
     props: ["type", "parent"],
     methods: {
         pickUpParent(){
-            this.$store.state.mouse.target = this.parent;
+            this.parent.pickUp();
         },
     }
     

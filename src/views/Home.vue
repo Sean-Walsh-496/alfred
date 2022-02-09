@@ -1,7 +1,7 @@
 <template>
   <div id="main">
     <TaskBar></TaskBar>
-    <Dashboard v-bind:module="$store.state.homePage"></Dashboard>
+    <Dashboard v-bind:state="$store.state.homePage.dashboard"></Dashboard>
   </div>
 </template>
 

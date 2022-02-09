@@ -1,6 +1,7 @@
 <template>
     <div class="panel" :style="{top: position[1] + 'px', left: position[0] + 'px', 
-         height: dimensions[1] + 'px', width: dimensions[0] + 'px'}">
+         height: dimensions[1] + 'px', width: dimensions[0] + 'px',
+         shadow: state.shadow}">
 
         <DynamicBorder side='W' :parent="this"/>
         <div style="height: 100%; width: 100%; display: flex; flex-direction: column">
@@ -27,8 +28,8 @@
 
 import Draggable from "./draggable.vue";
 import DynamicBorder from "./dynamicBorder.vue";
-import {mapMutations} from "vuex"; 
 import DaySchedule from "./panels/daySchedule.vue";
+import helper from "../helper";
 
 export default {
     name: "Panel",
@@ -37,25 +38,63 @@ export default {
         DynamicBorder,
         DaySchedule
     },
-    props: ["id", "module", "type"],
+    props: ["id", "state", "type"],
     computed: {
         position(){
-            const temp = this.module.panels[this.id].position
+            const temp = this.state.position
             return [temp.x, temp.y];
         },
         dimensions(){
-            const temp = this.module.panels[this.id].dimensions
+            const temp = this.state.dimensions
             return [temp.x, temp.y];
-        }
+        },
+        pickedUp() { return this.$store.state.mouse.target == this }
     },
     methods: {
         move(delta_x, delta_y){
-            this.movePanel({delta_x: delta_x, delta_y: delta_y, id: this.id});
+            this.state.position.x += delta_x;
+            this.state.position.y += delta_y;
+        },
+        snapPanel(){
+            console.log('in snap function')
+            const cellSize = this.$store.state.homePage.dashboard.cellSize;
+            const taskbar = this.$store.state.homePage.taskbar;
+
+            this.state.position = helper.snapPoint(this.state.position.x, this.state.position.y, cellSize);
+        
+            //get the bottom-right corner position if size adjusted
+            let corner = [this.state.dimensions.x, this.state.dimensions.y];
+            let new_corner = helper.snapPoint(...corner, cellSize);
+
+            this.state.dimensions.x = new_corner.x; this.state.dimensions.y = new_corner.y;
+            
+            //checks if out of bounds
+            let newPos = helper.outOfBounds(this.state.position, this.state.dimensions, 
+                            {x: taskbar.width, y: 0}, {x: 9999999, y: 9999999});
+
+            this.state.position.x = newPos.x; this.state.position.y = newPos.y;
+        },
+        pickUp(){
+            this.$store.state.mouse.target = this;
+            this.state.shadow = "12px 12px 20px 20px";
+
         },
         drop(){
-            this.snapPanel(this.id);
+            this.snapPanel();
+            this.state.shadow = ""
         },
-        ...mapMutations(["movePanel", "snapPanel"])
+    },
+    watch: {
+        pickedUp: {
+            handler(val){
+                if (val == true){
+
+                }
+                else if (val == false){
+                    this.drop();
+                }
+            },
+        }
     }
 }
 </script>

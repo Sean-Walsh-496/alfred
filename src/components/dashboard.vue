@@ -14,12 +14,10 @@ export default {
     components: {
         Panel
     },
-    props: {
-        module
-    },
+    props: ["state"],
     computed: {
         numOfPanels(){
-            return this.module.dashboard.panels.length;
+            return this.state.panels.length;
         }
     },
     methods: {
@@ -30,7 +28,7 @@ export default {
             this.addPanelData({e: $ev, type: "day-schedule"}); // creates the data in the $store
 
             document.body.appendChild(wrapper);
-            createApp(Panel, {id: n, module: this.$store.state.homePage.dashboard}).use(this.$store).mount(wrapper);
+            createApp(Panel, {id: n, state: this.state.panels[n]}).use(this.$store).mount(wrapper);
 
         },
         ...mapMutations(["addPanelData"])

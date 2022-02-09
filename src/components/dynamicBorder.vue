@@ -25,20 +25,20 @@ export default {
             switch (this.side){
                 case 'N':
                     this.morphPanel({delta_x: 0, delta_y: -delta_y, id: this.parent.id});
-                    this.movePanel({delta_x: 0, delta_y: delta_y, id: this.parent.id});
+                    this.parent.move(0, delta_y);
                     break;
 
                 case 'E':
                     this.morphPanel({delta_x: delta_x, delta_y: 0, id: this.parent.id});
-                    this.movePanel({delta_x: 0, delta_y: 0, id: this.parent.id});
+                    this.parent.move(0, 0);
                     break;
                 case 'S':
                     this.morphPanel({delta_x: 0, delta_y: delta_y, id: this.parent.id});
-                    this.movePanel({delta_x: 0, delta_y: 0, id: this.parent.id});
+                    this.parent.move(0, 0);
                     break;
                 case 'W':
                     this.morphPanel({delta_x: -delta_x, delta_y: 0, id: this.parent.id});
-                    this.movePanel({delta_x: delta_x, delta_y: 0, id: this.parent.id});
+                    this.parent.move(delta_x, 0);
                     break;
                 
             }
