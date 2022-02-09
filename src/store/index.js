@@ -43,7 +43,8 @@ export default createStore({
 
             },
             pickedUp: false,
-            shadow: ""
+            shadow: "",
+            transform: ""
           };
           state.dashboard.panels.push(data);
 

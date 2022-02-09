@@ -1,7 +1,7 @@
 <template>
     <div class="panel" :style="{top: position[1] + 'px', left: position[0] + 'px', 
          height: dimensions[1] + 'px', width: dimensions[0] + 'px',
-         shadow: state.shadow}">
+         boxShadow: state.shadow, transform: state.transform}">
 
         <DynamicBorder side='W' :parent="this"/>
         <div style="height: 100%; width: 100%; display: flex; flex-direction: column">
@@ -83,12 +83,14 @@ export default {
 
         pickUp(){
             this.$store.state.mouse.target = this;
-            this.state.shadow = "12px 12px 20px 20px";
+            this.state.shadow = "12px 12px 2px 2px";
+            this.state.transform = "scale(1.01)";
 
         },
         drop(){
             this.snap();
-            this.state.shadow = ""
+            this.state.shadow = "";
+            this.state.transform = "";
         },
     },
     watch: {
