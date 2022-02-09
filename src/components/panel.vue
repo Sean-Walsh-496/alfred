@@ -56,7 +56,6 @@ export default {
             this.state.position.y += delta_y;
         },
         snap(){
-            console.log('in snap function')
             const cellSize = this.$store.state.homePage.dashboard.cellSize;
             const taskbar = this.$store.state.homePage.taskbar;
 
