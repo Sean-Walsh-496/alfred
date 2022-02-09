@@ -55,7 +55,7 @@ export default {
             this.state.position.x += delta_x;
             this.state.position.y += delta_y;
         },
-        snapPanel(){
+        snap(){
             console.log('in snap function')
             const cellSize = this.$store.state.homePage.dashboard.cellSize;
             const taskbar = this.$store.state.homePage.taskbar;
@@ -74,13 +74,20 @@ export default {
 
             this.state.position.x = newPos.x; this.state.position.y = newPos.y;
         },
+        morph(delta_x, delta_y){
+          this.state.dimensions.x += delta_x;
+          this.state.dimensions.y += delta_y;
+        },
+
+        //sus
+
         pickUp(){
             this.$store.state.mouse.target = this;
             this.state.shadow = "12px 12px 20px 20px";
 
         },
         drop(){
-            this.snapPanel();
+            this.snap();
             this.state.shadow = ""
         },
     },

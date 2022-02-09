@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import {mapMutations} from "vuex";
 
 export default {
     name:"Dynamic-border",
@@ -18,32 +17,28 @@ export default {
         targetFiller(){
             this.$store.state.mouse.target = this;
         },
-        drop(){
-            this.snapPanel(this.parent.id)
-        },
         move(delta_x, delta_y){
             switch (this.side){
                 case 'N':
-                    this.morphPanel({delta_x: 0, delta_y: -delta_y, id: this.parent.id});
+                    this.parent.morph(0, -delta_y);
                     this.parent.move(0, delta_y);
                     break;
 
                 case 'E':
-                    this.morphPanel({delta_x: delta_x, delta_y: 0, id: this.parent.id});
+                    this.parent.morph(delta_x, 0,);
                     this.parent.move(0, 0);
                     break;
                 case 'S':
-                    this.morphPanel({delta_x: 0, delta_y: delta_y, id: this.parent.id});
+                    this.parent.morph(0, delta_y);
                     this.parent.move(0, 0);
                     break;
                 case 'W':
-                    this.morphPanel({delta_x: -delta_x, delta_y: 0, id: this.parent.id});
+                    this.parent.morph(-delta_x, 0);
                     this.parent.move(delta_x, 0);
                     break;
                 
             }
-        },
-        ...mapMutations(["morphPanel", "movePanel", "snapPanel"])
+        }
     },
     data(){
         let height, width, dir;

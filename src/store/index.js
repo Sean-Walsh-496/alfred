@@ -64,12 +64,6 @@ export default createStore({
           target.content.hours = times;
         },
 
-        morphPanel(state, payload){
-          let target = state.dashboard.panels[payload.id];
-          target.dimensions.x += payload.delta_x;
-          target.dimensions.y += payload.delta_y;
-        },
-
         addActivity(state, payload){
           let target = state.dashboard.panels[payload.parent.id].content.hours[payload.id - 1];
           
