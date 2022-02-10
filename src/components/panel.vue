@@ -78,19 +78,37 @@ export default {
           this.state.dimensions.y += delta_y;
         },
 
-        //sus
+        pickUpChildren(){
+            for (let target of this.state.content.hours){
+                if (target.content != null){
+                    target.content.pickedUp = true;
+                    console.log("picked up!")
+                }
+            }
+        },
+        dropChildren(){
+            for (let target of this.state.content.hours){
+                if (target.content != null){
+                    target.content.pickedUp = false;
+                }
+            }
+        },
+
+        
 
         pickUp(){
             this.$store.state.mouse.target = this;
             this.state.shadow = "12px 12px 2px 2px";
             this.state.transform = "scale(1.01)";
             this.state.zIndex = 10;
+            this.pickUpChildren();
         },
         drop(){
             this.snap();
             this.state.shadow = "";
             this.state.transform = "";
             this.state.zIndex = 0;
+            this.dropChildren();
         },
     },
     watch: {
