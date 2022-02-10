@@ -36,6 +36,9 @@ export default {
 
             //add GUI element
             let wrapper = document.createElement("div");
+            wrapper.style.position = "absolute"
+            wrapper.style.top = "0px"
+            wrapper.style.zIndex = 11;
             document.body.appendChild(wrapper);
             createApp(Activity, {parent: this, day: this.parent, state: this.state}).use(this.$store).mount(wrapper);
 
