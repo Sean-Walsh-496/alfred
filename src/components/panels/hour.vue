@@ -20,9 +20,12 @@ export default {
     data(){
         let borderColor = "transparent";
         if (this.id == 24) borderColor = "var(--border)";
+        let panel = this.parent.parent;
+        let state = panel.state.content.hours[this.id - 1];
         return {
             borderColor: borderColor,
-            panel: this.parent.parent
+            panel: panel,
+            state: state
         };
     },
     methods: {
@@ -34,7 +37,7 @@ export default {
             //add GUI element
             let wrapper = document.createElement("div");
             document.body.appendChild(wrapper);
-            createApp(Activity, {parent: this, day: this.parent}).use(this.$store).mount(wrapper);
+            createApp(Activity, {parent: this, day: this.parent, state: this.state}).use(this.$store).mount(wrapper);
 
         },
         ...mapMutations(["addActivity"])
