@@ -73,6 +73,7 @@ export default createStore({
             name: "",
             duration: 1,
             color: "blue",
+            pickedUp: false
           };
           
           target.content = activity;
