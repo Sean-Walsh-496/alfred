@@ -29,7 +29,7 @@
 import Draggable from "./draggable.vue";
 import DynamicBorder from "./dynamicBorder.vue";
 import DaySchedule from "./panels/daySchedule.vue";
-import helper from "../helper";
+import helper from "../../helper";
 
 export default {
     name: "Panel",

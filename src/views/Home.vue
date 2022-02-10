@@ -8,8 +8,8 @@
 <script>
 // @ is an alias to /src
 
-import TaskBar from "../components/taskbar.vue";
-import Dashboard from "../components/dashboard.vue";
+import TaskBar from "../components/tangibles/taskbar.vue";
+import Dashboard from "../components/tangibles/dashboard.vue";
 
 export default {
   name: 'Home',
