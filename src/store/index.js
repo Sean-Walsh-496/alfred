@@ -74,7 +74,7 @@ export default createStore({
             duration: 1,
             color: "blue",
             pickedUp: false,
-            zIndex: 5
+            zIndex: 11
           };
           
           target.content = activity;
