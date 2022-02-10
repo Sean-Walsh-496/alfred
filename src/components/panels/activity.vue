@@ -1,5 +1,6 @@
 <template>
-    <div class="content" :style="{top: rect.y + 'px', left: rect.x + 'px', width: (rect.right - rect.x) + 'px', height: (rect.bottom - rect.y) + 'px'}" @click="test">
+    <div class="content" :style="{top: rect.y + 'px', left: rect.x + 'px', width: (rect.right - rect.x) + 'px', 
+         height: (rect.bottom - rect.y) + 'px', zIndex: state.zIndex}" @click="test">
 
     </div>
     
@@ -8,7 +9,7 @@
 <script>
 export default {
     name: "Activity",
-    props: ["day", "parent"],
+    props: ["day", "parent", "state"],
     data(){
         let panel = this.$store.state.homePage.dashboard.panels[this.day.parent.id];
         let data = panel.content.hours[this.parent.id - 1];
@@ -23,11 +24,22 @@ export default {
         test(){
             console.log(this.panelData);
             console.log(this.$el.getBoundingClientRect());
+        },
+        pickUp(){
+            this.state.zIndex = 11;
+            console.log('done')
+        },
+        drop(){
+            this.state.zIndex = 5;
         }
+
     },
     computed: {
         panelData(){
             return this.$store.state.homePage.dashboard.panels[this.day.parent.id];
+        },
+        pickedUp(){
+            return this.state.pickedUp;
         }
     },
     watch: {
@@ -38,6 +50,10 @@ export default {
                 setTimeout(() => {this.rect = this.parent.$el.getBoundingClientRect(), 10});
             },
             deep: true
+        },
+        pickedUp(val){
+            if (val == true) this.pickup();
+            else this.drop();
         }
     },
 
