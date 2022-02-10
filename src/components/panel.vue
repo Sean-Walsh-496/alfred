@@ -82,7 +82,6 @@ export default {
             for (let target of this.state.content.hours){
                 if (target.content != null){
                     target.content.pickedUp = true;
-                    console.log("picked up!")
                 }
             }
         },
