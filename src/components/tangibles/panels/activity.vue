@@ -1,14 +1,20 @@
 <template>
     <div class="content" :style="{top: rect.y +'px', left: rect.x + 'px', width: (rect.right - rect.x) + 'px', 
-         height: (rect.bottom - rect.y) + 'px', zIndex: state.zIndex}" @click="test">
+         height: (rect.bottom - rect.y) + 'px', zIndex: state.zIndex}" @click="pickUp">
 
     </div>
     
 </template>
 
 <script>
+
+import moveable from "../../abstracts/moveable.js";
+import morpheable from "../../abstracts/morpheable.js";
+import snappable from "../../abstracts/snappable.js";
+
 export default {
     name: "Activity",
+    mixins: [moveable, morpheable, snappable],
     props: ["day", "parent", "state"],
     data(){
         let panel = this.$store.state.homePage.dashboard.panels[this.day.parent.id];
@@ -23,10 +29,6 @@ export default {
         };
     },
     methods: {
-        test(){
-            console.log(this.state);
-
-        },
         pickUp(){
             this.state.content.zIndex = 11;
             console.log(this.state)
