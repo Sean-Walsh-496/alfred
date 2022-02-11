@@ -20,8 +20,6 @@ export default {
         let panel = this.$store.state.homePage.dashboard.panels[this.day.parent.id];
         let data = panel.content.hours[this.parent.id - 1];
         let rect = this.parent.$el.getBoundingClientRect();
-        console.log(this.parent.$el)
-        console.log(this.parent.$el.getBoundingClientRect())
         return {
             data: data,
             rect: rect
