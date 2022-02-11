@@ -29,10 +29,13 @@
 import Draggable from "./draggable.vue";
 import DynamicBorder from "./dynamicBorder.vue";
 import DaySchedule from "./panels/daySchedule.vue";
-import helper from "../../helper";
+import moveable from "../abstracts/moveable.js";
+import morpheable from "../abstracts/morpheable.js";
+import snappable from "../abstracts/snappable.js";
 
 export default {
     name: "Panel",
+    mixins: [moveable, morpheable, snappable],
     components: {
         Draggable,
         DynamicBorder,
@@ -51,33 +54,6 @@ export default {
         pickedUp() { return this.$store.state.mouse.target == this }
     },
     methods: {
-        move(delta_x, delta_y){
-            this.state.position.x += delta_x;
-            this.state.position.y += delta_y;
-        },
-        snap(){
-            const cellSize = this.$store.state.homePage.dashboard.cellSize;
-            const taskbar = this.$store.state.homePage.taskbar;
-
-            this.state.position = helper.snapPoint(this.state.position.x, this.state.position.y, cellSize);
-        
-            //get the bottom-right corner position if size adjusted
-            let corner = [this.state.dimensions.x, this.state.dimensions.y];
-            let new_corner = helper.snapPoint(...corner, cellSize);
-
-            this.state.dimensions.x = new_corner.x; this.state.dimensions.y = new_corner.y;
-            
-            //checks if out of bounds
-            let newPos = helper.outOfBounds(this.state.position, this.state.dimensions, 
-                            {x: taskbar.width, y: 0}, {x: 9999999, y: 9999999});
-
-            this.state.position.x = newPos.x; this.state.position.y = newPos.y;
-        },
-        morph(delta_x, delta_y){
-          this.state.dimensions.x += delta_x;
-          this.state.dimensions.y += delta_y;
-        },
-
         pickUpChildren(){
             for (let target of this.state.content.hours){
                 if (target.content != null){
