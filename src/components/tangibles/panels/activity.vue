@@ -28,13 +28,15 @@ export default {
     },
     methods: {
         pickUp(){
-            this.state.pickedUp = true;
             this.state.zIndex = 11;
             this.$store.state.mouse.target = this;
         },
         drop(){
-            this.state.pickedUp = false;
             this.state.zIndex = 5;
+
+            const listRect = this.day.$el.getElementsByClassName("hour-list")[0].getBoundingClientRect();
+            console.log(listRect)
+            this.snap({x: listRect.left, y: listRect.top}, {x: listRect.width, y: listRect.height})
         }
 
     },
@@ -42,9 +44,7 @@ export default {
         panelData(){
             return this.$store.state.homePage.dashboard.panels[this.day.parent.id];
         },
-        pickedUp(){
-            return this.state.pickedUp;
-        },
+        pickedUp(){ return this.$store.state.mouse.target == this },
     },
     watch: {
         panelData: {
@@ -56,8 +56,8 @@ export default {
             deep: true
         },
         pickedUp(val){
-            // if (val == true) this.pickUp();
-            // else this.drop();
+            if (val != true) this.drop();
+
         },
     },
 

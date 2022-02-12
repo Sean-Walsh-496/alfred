@@ -33,7 +33,11 @@ export default {
             //add data
             console.log(this.state)
             let rect = this.$el.getBoundingClientRect()
-            let payload = {parent: this.panel, id: this.id, x: rect.left, y: rect.top};
+            let payload = {parent: this.panel, id: this.id,
+                             position: {x: rect.left, y: rect.top},
+                             dimensions: {x: rect.width, y: rect.height}
+                             
+                             };
             this.addActivity(payload);
 
             //add GUI element

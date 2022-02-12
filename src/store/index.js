@@ -75,10 +75,8 @@ export default createStore({
             color: "blue",
             pickedUp: false,
             zIndex: 11,
-            position: {
-              x: payload.x,
-              y: payload.y              
-            }
+            dimensions: payload.dimensions,
+            position: payload.position
 
           };
           
