@@ -1,6 +1,6 @@
 <template>
-    <div class="content" :style="{top: rect.y +'px', left: rect.x + 'px', width: (rect.right - rect.x) + 'px', 
-         height: (rect.bottom - rect.y) + 'px', zIndex: state.zIndex}" @click="pickUp">
+    <div class="content" :style="{top: state.position.y +'px', left: state.position.x + 'px', width: (rect.right - rect.x) + 'px', 
+         height: (rect.bottom - rect.y) + 'px', zIndex: state.zIndex}" @mousedown="pickUp">
 
     </div>
     
@@ -28,11 +28,13 @@ export default {
     },
     methods: {
         pickUp(){
-            this.state.content.zIndex = 11;
-            console.log(this.state)
+            this.state.pickedUp = true;
+            this.state.zIndex = 11;
+            this.$store.state.mouse.target = this;
         },
         drop(){
-            this.state.content.zIndex = 5;
+            this.state.pickedUp = false;
+            this.state.zIndex = 5;
         }
 
     },
@@ -41,7 +43,7 @@ export default {
             return this.$store.state.homePage.dashboard.panels[this.day.parent.id];
         },
         pickedUp(){
-            return this.state.content.pickedUp;
+            return this.state.pickedUp;
         },
     },
     watch: {
