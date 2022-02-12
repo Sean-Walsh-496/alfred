@@ -31,7 +31,9 @@ export default {
     methods: {
         clicked(){
             //add data
-            let payload = {parent: this.panel, id: this.id};
+            console.log(this.state)
+            let rect = this.$el.getBoundingClientRect()
+            let payload = {parent: this.panel, id: this.id, x: rect.left, y: rect.top};
             this.addActivity(payload);
 
             //add GUI element
@@ -40,7 +42,7 @@ export default {
             wrapper.style.top = "0px"
             wrapper.style.zIndex = 11;
             document.body.appendChild(wrapper);
-            createApp(Activity, {parent: this, day: this.parent, state: this.state}).use(this.$store).mount(wrapper);
+            createApp(Activity, {parent: this, day: this.parent, state: this.state.content}).use(this.$store).mount(wrapper);
 
         },
         ...mapMutations(["addActivity"])
