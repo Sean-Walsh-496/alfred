@@ -2,7 +2,7 @@ import helper from "../../helper.js";
 
 export default {
     methods: {
-        snap(){
+        snap(lBounds=null, rBounds=null){
             const cellSize = this.$store.state.homePage.dashboard.cellSize;
             const taskbar = this.$store.state.homePage.taskbar;
 
@@ -15,8 +15,11 @@ export default {
             this.state.dimensions.x = new_corner.x; this.state.dimensions.y = new_corner.y;
             
             //checks if out of bounds
+            if (lBounds == null) lBounds = {x: taskbar.width, y: 0};
+            if (rBounds == null) rBounds = {x: 9999999, y: 9999999};
+            
             let newPos = helper.outOfBounds(this.state.position, this.state.dimensions, 
-                            {x: taskbar.width, y: 0}, {x: 9999999, y: 9999999});
+                            lBounds, rBounds);
 
             this.state.position.x = newPos.x; this.state.position.y = newPos.y;
         },
