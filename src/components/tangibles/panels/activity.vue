@@ -31,12 +31,27 @@ export default {
             this.state.zIndex = 11;
             this.$store.state.mouse.target = this;
         },
+        findHour(){
+            const list = this.day.$el.getElementsByClassName("hour-list")[0];
+            let closest = Infinity, closestIndex = null;
+            for (let i = 0; i < list.children.length; i++){
+                let iy = list.children[i].getBoundingClientRect().top;
+                if (Math.abs(iy - this.state.position.y) < closest){
+                    closest = Math.abs(iy - this.state.position.y);
+                    closestIndex = i;
+                }
+            }
+            return closestIndex;
+        },
         drop(){
             this.state.zIndex = 5;
 
-            const listRect = this.day.$el.getElementsByClassName("hour-list")[0].getBoundingClientRect();
-            console.log(listRect)
-            this.snap({x: listRect.left, y: listRect.top}, {x: listRect.width, y: listRect.height})
+            const hourIndex = this.findHour();
+            const hour = this.day.$el.getElementsByClassName("hour-list")[0].children[hourIndex];
+            let hourRect = hour.getBoundingClientRect();
+
+            this.state.position.y = hourRect.top;
+            this.state.position.x = hourRect.left;
         }
 
     },
