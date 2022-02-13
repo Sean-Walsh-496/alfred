@@ -31,7 +31,6 @@ export default {
     methods: {
         clicked(){
             //add data
-            console.log(this.state)
             let rect = this.$el.getBoundingClientRect()
             let payload = {parent: this.panel, id: this.id,
                              position: {x: rect.left, y: rect.top},
