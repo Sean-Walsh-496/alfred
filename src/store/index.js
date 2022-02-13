@@ -72,6 +72,7 @@ export default createStore({
           let activity = {
             name: "", 
             duration: 1, //number of cells taken up
+            time: null,
             color: "blue",
             pickedUp: false, //currently being moved
             zIndex: 11,
