@@ -70,14 +70,14 @@ export default createStore({
           let target = state.dashboard.panels[payload.parent.id].content.hours[payload.id - 1];
           
           let activity = {
-            name: "",
-            duration: 1,
+            name: "", 
+            duration: 1, //number of cells taken up
             color: "blue",
-            pickedUp: false,
+            pickedUp: false, //currently being moved
             zIndex: 11,
             dimensions: payload.dimensions,
             position: payload.position,
-            transforming: false
+            transforming: false //shrinking or stretching
 
           };
           
