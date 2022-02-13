@@ -76,7 +76,8 @@ export default createStore({
             pickedUp: false,
             zIndex: 11,
             dimensions: payload.dimensions,
-            position: payload.position
+            position: payload.position,
+            transforming: false
 
           };
           
