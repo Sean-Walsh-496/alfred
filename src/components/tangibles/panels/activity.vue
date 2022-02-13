@@ -1,6 +1,6 @@
 <template>
-    <div class="content" :style="{top: state.position.y +'px', left: state.position.x + 'px', width: (rect.right - rect.x) + 'px', 
-         height: (rect.bottom - rect.y) + 'px', zIndex: state.zIndex}" @mousedown="pickUp">
+    <div class="content" :style="{top: state.position.y +'px', left: state.position.x + 'px', width: (state.dimensions.x) + 'px', 
+         height: (state.dimensions.y) + 'px', zIndex: state.zIndex}" @mousedown="pickUp">
 
     </div>
     
@@ -16,16 +16,6 @@ export default {
     name: "Activity",
     mixins: [moveable, morpheable, snappable],
     props: ["day", "parent", "state"],
-    data(){
-        let panel = this.$store.state.homePage.dashboard.panels[this.day.parent.id];
-        let data = panel.content.hours[this.parent.id - 1];
-        let rect = this.parent.$el.getBoundingClientRect();
-        return {
-            data: data,
-            rect: rect
-
-        };
-    },
     methods: {
         pickUp(){
             this.state.zIndex = 11;
@@ -43,15 +33,22 @@ export default {
             }
             return closestIndex;
         },
+        moveData(newIndex){
+            this.parent.state.content = null;
+            this.panelData.content.hours[newIndex].content = this.state;
+        },
         drop(){
             this.state.zIndex = 5;
 
             const hourIndex = this.findHour();
+            this.moveData(hourIndex);
+
             const hour = this.day.$el.getElementsByClassName("hour-list")[0].children[hourIndex];
             let hourRect = hour.getBoundingClientRect();
 
             this.state.position.y = hourRect.top;
             this.state.position.x = hourRect.left;
+
         }
 
     },
@@ -59,20 +56,32 @@ export default {
         panelData(){
             return this.$store.state.homePage.dashboard.panels[this.day.parent.id];
         },
+        panelPosition(){ return this.panelData.position },
+        panelDimensions() {return this.panelData.dimensions},
         pickedUp(){ return this.$store.state.mouse.target == this },
     },
     watch: {
-        panelData: {
+        panelPosition: {
             handler(){
                 //jank as hell timeout. The Vuex store is updating its position, but getBoundingClientRect
                 // is just too slow apparently.
-                setTimeout(() => {this.rect = this.parent.$el.getBoundingClientRect()}, 10);
+                setTimeout(() => {
+                    const rect = this.parent.$el.getBoundingClientRect();
+                    this.state.position.x = rect.left; this.state.position.y = rect.top;
+                    
+                    }, 10);
+            },
+            deep: true
+        },
+        panelDimensions: {
+            handler(){
+                const rect = this.parent.$el.getBoundingClientRect();
+                this.state.dimensions.x = rect.width; this.state.dimensions.y = rect.height;
             },
             deep: true
         },
         pickedUp(val){
             if (val != true) this.drop();
-
         },
     },
 
