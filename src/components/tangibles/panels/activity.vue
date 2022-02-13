@@ -2,6 +2,10 @@
     <div class="content" :style="{top: state.position.y +'px', left: state.position.x + 'px', width: (state.dimensions.x) + 'px', 
          height: (state.dimensions.y) + 'px', zIndex: state.zIndex}" @mousedown="pickUp">
 
+        <dynamicBorder side='N' :parent="this"/>
+        <dynamicBorder side='N' :parent="this"/>
+
+
     </div>
     
 </template>
@@ -11,9 +15,13 @@
 import moveable from "../../abstracts/moveable.js";
 import morpheable from "../../abstracts/morpheable.js";
 import snappable from "../../abstracts/snappable.js";
+import dynamicBorder from "../dynamicBorder.vue";
 
 export default {
     name: "Activity",
+    components: {
+        dynamicBorder
+    },
     mixins: [moveable, morpheable, snappable],
     props: ["day", "parent", "state"],
     methods: {
@@ -92,6 +100,9 @@ export default {
 <style scoped>
 
     .content{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         position: absolute;
         height: 100px;
         width: 100px;
