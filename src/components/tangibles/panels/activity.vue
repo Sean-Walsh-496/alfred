@@ -1,9 +1,10 @@
 <template>
     <div class="content" :style="{top: state.position.y +'px', left: state.position.x + 'px', width: (state.dimensions.x) + 'px', 
-         height: (state.dimensions.y) + 'px', zIndex: state.zIndex}" @mousedown="pickUp">
+         height: (state.dimensions.y) + 'px', zIndex: state.zIndex}">
 
-        <dynamicBorder side='N' :parent="this"/>
-        <dynamicBorder side='N' :parent="this"/>
+        <DynamicBorder side='N' :parent="this"/>
+        <div class="filler" @mousedown="pickUp"></div>
+        <DynamicBorder side='S' :parent="this"/>
 
 
     </div>
@@ -14,12 +15,12 @@
 
 import moveable from "../../abstracts/moveable.js";
 import morpheable from "../../abstracts/morpheable.js";
-import dynamicBorder from "../dynamicBorder.vue";
+import DynamicBorder from "../dynamicBorder.vue";
 
 export default {
     name: "Activity",
     components: {
-        dynamicBorder
+        DynamicBorder
     },
     mixins: [moveable, morpheable],
     props: ["day", "parent", "state"],
@@ -98,10 +99,14 @@ export default {
 
 <style scoped>
 
+    .filler{
+        height: 100%;
+    }
+
     .content{
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
         position: absolute;
         height: 100px;
         width: 100px;
