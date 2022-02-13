@@ -14,7 +14,6 @@
 
 import moveable from "../../abstracts/moveable.js";
 import morpheable from "../../abstracts/morpheable.js";
-import snappable from "../../abstracts/snappable.js";
 import dynamicBorder from "../dynamicBorder.vue";
 
 export default {
@@ -22,7 +21,7 @@ export default {
     components: {
         dynamicBorder
     },
-    mixins: [moveable, morpheable, snappable],
+    mixins: [moveable, morpheable],
     props: ["day", "parent", "state"],
     methods: {
         pickUp(){
