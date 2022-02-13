@@ -2,9 +2,9 @@
     <div class="content" :style="{top: state.position.y +'px', left: state.position.x + 'px', width: (state.dimensions.x) + 'px', 
          height: (state.dimensions.y) + 'px', zIndex: state.zIndex}">
 
-        <DynamicBorder side='N' :parent="this"/>
+        <DynamicBorder ref="topDyn" side='N' :parent="this"/>
         <div class="filler" @mousedown="pickUp"></div>
-        <DynamicBorder side='S' :parent="this"/>
+        <DynamicBorder ref="bottomDyn" side='S' :parent="this"/>
 
 
     </div>
@@ -25,25 +25,33 @@ export default {
     mixins: [moveable, morpheable],
     props: ["day", "parent", "state"],
     methods: {
+        transform(){
+            this.drop();
+            const currentIndex = this.panelData.content.hours.findIndex(el => el.content === this.state);
+            const newHeight = this.findHeight();
+
+            let bottomIndex = currentIndex + newHeight - 1;
+            bottomIndex = bottomIndex > 23 ? 23 : bottomIndex;
+            console.log(bottomIndex);
+
+            let list = this.day.$el.getElementsByClassName("hour-list")[0];
+            let newBottom = list.children[bottomIndex].getBoundingClientRect().bottom;
+
+            this.state.dimensions.y = newBottom - this.state.position.y;
+
+            console.log(`
+                curIndex: ${currentIndex},
+                newHeight: ${newHeight},
+                bottomIndex: ${bottomIndex},
+                newBottom: ${newBottom}
+            `)
+
+
+
+        },
         pickUp(){
             this.state.zIndex = 11;
             this.$store.state.mouse.target = this;
-        },
-        findHour(){
-            const list = this.day.$el.getElementsByClassName("hour-list")[0];
-            let closest = Infinity, closestIndex = null;
-            for (let i = 0; i < list.children.length; i++){
-                let iy = list.children[i].getBoundingClientRect().top;
-                if (Math.abs(iy - this.state.position.y) < closest){
-                    closest = Math.abs(iy - this.state.position.y);
-                    closestIndex = i;
-                }
-            }
-            return closestIndex;
-        },
-        moveData(newIndex){
-            this.parent.state.content = null;
-            this.panelData.content.hours[newIndex].content = this.state;
         },
         drop(){
             this.state.zIndex = 5;
@@ -57,7 +65,36 @@ export default {
             this.state.position.y = hourRect.top;
             this.state.position.x = hourRect.left;
 
-        }
+        },
+
+        findHour(){
+            const list = this.day.$el.getElementsByClassName("hour-list")[0];
+            let closest = Infinity, closestIndex = null;
+            for (let i = 0; i < list.children.length; i++){
+                let iy = list.children[i].getBoundingClientRect().top;
+                if (Math.abs(iy - this.state.position.y) < closest){
+                    closest = Math.abs(iy - this.state.position.y);
+                    closestIndex = i;
+                }
+            }
+            return closestIndex;
+        },
+        findHeight(){
+            const hourHeight = this.parent.$el.getBoundingClientRect().height - 2;
+            if ( (this.state.dimensions.y % hourHeight) > (hourHeight / 2) ){
+                return Math.ceil(this.state.dimensions.y / hourHeight);
+            }
+            else {
+                return Math.floor(this.state.dimensions.y / hourHeight);
+            }
+        },
+
+        moveData(newIndex){
+            this.parent.state.content = null;
+            this.panelData.content.hours[newIndex].content = this.state;
+        },
+
+
 
     },
     computed: {
@@ -67,6 +104,7 @@ export default {
         panelPosition(){ return this.panelData.position },
         panelDimensions() {return this.panelData.dimensions},
         pickedUp(){ return this.$store.state.mouse.target == this },
+        mouseTarget() { return this.$store.state.mouse.target }
     },
     watch: {
         panelPosition: {
@@ -91,6 +129,11 @@ export default {
         pickedUp(val){
             if (val != true) this.drop();
         },
+        mouseTarget(newVal, oldVal){
+            if (oldVal == this.$refs.topDyn || oldVal == this.$refs.bottomDyn){
+                this.transform();
+            }
+        }
     },
 
 
