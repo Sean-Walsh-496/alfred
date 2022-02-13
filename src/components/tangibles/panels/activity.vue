@@ -28,23 +28,17 @@ export default {
         transform(){
             this.drop();
             const currentIndex = this.panelData.content.hours.findIndex(el => el.content === this.state);
-            const newHeight = this.findHeight();
+            let newHeight = this.findHeight();
+            newHeight = newHeight + currentIndex - 1 > 23 ? 24 - currentIndex : newHeight;
 
             let bottomIndex = currentIndex + newHeight - 1;
-            bottomIndex = bottomIndex > 23 ? 23 : bottomIndex;
-            console.log(bottomIndex);
 
             let list = this.day.$el.getElementsByClassName("hour-list")[0];
             let newBottom = list.children[bottomIndex].getBoundingClientRect().bottom;
 
             this.state.dimensions.y = newBottom - this.state.position.y;
 
-            console.log(`
-                curIndex: ${currentIndex},
-                newHeight: ${newHeight},
-                bottomIndex: ${bottomIndex},
-                newBottom: ${newBottom}
-            `)
+            this.state.duration = newHeight;
 
 
 
