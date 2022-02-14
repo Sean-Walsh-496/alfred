@@ -103,15 +103,16 @@ export default {
 <style scoped>
     .panel {
         position: absolute;
-        background: var(--blue);
+        background: var(--white);
         /*
         transition-property: height, width;
         transition-duration: 0.5s;
         transition-timing-function: ease-in-out;
         */
-        border: 2px solid var(--border);
+        border: 1px solid var(--border);
         display: flex;
         flex-direction: row;
+        border-radius: 10px;
     }
 
     .top-bar{
@@ -119,6 +120,9 @@ export default {
         flex-direction: column;
         width: 100%;
         height: max-content;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        background: var(--border);
     }
 
     .content{

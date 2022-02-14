@@ -21,6 +21,6 @@ export default {
     .draggable {
         height: 10px;
         width: 100%;
-        background: var(--border);
+        background: transparent;
     }
 </style>

@@ -73,7 +73,7 @@ export default {
 
 .dynamic-border{
     display: flex;
-    background: var(--border);
+    background: transparent;
 
 }
     
