@@ -21,7 +21,31 @@ export default {
     components: {
         Hour
     },
-    props: ["parent"],
+    props: ["parent", "state"],
+    methods: {
+        insert(index, activity){
+
+        },
+        /**
+         * @param {number} index
+         */
+        delete(index){
+            this.state[index].content = null
+        },
+
+
+        shift(){
+
+        },
+        /**
+         * @param {number} a the index to be moved
+         * @param {number} b the new location
+         */
+        relocate(a, b){
+            this.insert(b, this.state.hours[a]);
+            this.delete(a);
+        }
+    }
 }
 </script>
 

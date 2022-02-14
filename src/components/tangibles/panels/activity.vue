@@ -22,6 +22,7 @@ export default {
     components: {
         DynamicBorder
     },
+
     mixins: [moveable, morpheable],
     props: ["day", "parent", "state"],
     methods: {

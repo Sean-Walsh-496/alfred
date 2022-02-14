@@ -10,7 +10,7 @@
                 <Draggable type="move" :parent="this"/>
             </div>
             <div class="content">
-                <DaySchedule :v-if="type == 'day-schedule'" :parent="this"/>
+                <DaySchedule :v-if="type == 'day-schedule'" :parent="this" :state="state.content.hours"/>
             </div>
             <div class="top-bar">
                 <DynamicBorder side='S' :parent="this"/>
@@ -52,6 +52,7 @@ export default {
             return [temp.x, temp.y];
         },
         pickedUp() { return this.$store.state.mouse.target == this }
+        
     },
     methods: {
         pickUpChildren(){
@@ -68,8 +69,6 @@ export default {
                 }
             }
         },
-
-        
 
         pickUp(){
             this.$store.state.mouse.target = this;
