@@ -114,7 +114,7 @@ export default {
     .bar{
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: 99.5%;
         height: max-content;
         background: var(--dark-tag);
         border: 1px solid transparent;                        
