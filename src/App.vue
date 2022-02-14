@@ -6,6 +6,7 @@
 :root {
   --background-1: #eeeff2;
   --border: #a8a8a8;
+  --dark-tag: #e9eaec;
   --red: #FF595E;
   --blue: #1982C4;
   --green: #8AC926;
