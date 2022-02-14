@@ -69,7 +69,7 @@ export default {
 
         pickUp(){
             this.$store.state.mouse.target = this;
-            this.state.shadow = "12px 12px 2px 2px";
+            this.state.shadow = "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px";
             this.state.transform = "scale(1.01)";
             this.state.zIndex = 10;
             this.pickUpChildren();
