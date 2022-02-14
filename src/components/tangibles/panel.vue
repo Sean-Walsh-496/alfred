@@ -3,23 +3,20 @@
          height: dimensions[1] + 'px', width: dimensions[0] + 'px',
          boxShadow: state.shadow, transform: state.transform, zIndex: state.zIndex}">
 
-        <DynamicBorder side='W' :parent="this"/>
-        <div style="height: 100%; width: 100%; display: flex; flex-direction: column">
-            <div class="top-bar">
+            <div class="top bar">
                 <DynamicBorder side='N' :parent="this"/>
                 <Draggable type="move" :parent="this"/>
             </div>
-            <div class="content">
-                <DaySchedule :v-if="type == 'day-schedule'" :parent="this" :state="state.content.hours"/>
+            <div class="body">
+                <DynamicBorder side='W' :parent="this"/>
+                <div class="content">
+                    <DaySchedule :v-if="type == 'day-schedule'" :parent="this" :state="state.content.hours"/>
+                </div>   
+                <DynamicBorder side='E' :parent="this"/>                             
             </div>
-            <div class="top-bar">
+            <div class="bottom bar">
                 <DynamicBorder side='S' :parent="this"/>
-
             </div>
-            
-        </div>
-        <DynamicBorder side='E' :parent="this"/>
-
     </div>
 </template>
 
@@ -111,18 +108,32 @@ export default {
         */
         border: 1px solid var(--border);
         display: flex;
-        flex-direction: row;
-        border-radius: 10px;
+        flex-direction: column;
+        border-radius: 5px;
     }
-
-    .top-bar{
+    .bar{
         display: flex;
         flex-direction: column;
         width: 100%;
         height: max-content;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        background: var(--border);
+        background: var(--dark-tag);
+        border: 1px solid transparent;                        
+    }
+
+    .top{
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-color: var(--border);
+    }
+    .bottom{
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border-top-color: var(--border);        
+    }
+    .body{
+        display: flex;
+        flex-direction: row;
+        height: 100%;
     }
 
     .content{
