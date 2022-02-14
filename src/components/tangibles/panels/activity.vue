@@ -148,7 +148,8 @@ export default {
         position: absolute;
         height: 100px;
         width: 100px;
-        background: blue;
+        background: var(--blue);
+        border-radius: 10px;
 
     }
 
