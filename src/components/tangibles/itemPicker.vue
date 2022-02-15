@@ -22,6 +22,8 @@ export default {
         makeInvisible(){
             this.state.dimensions.x = 0;
             this.state.dimensions.y = 0;
+            this.state.position.x = -9999;
+            this.state.position.y = -9999;
             this.state.headerText = ""
         }
 
