@@ -6,6 +6,16 @@ export default createStore({
       down: false,
       target: null
     },
+    picker: {
+      position: {
+        x: 0,
+        y: 0
+      },
+      dimensions: {
+        x: 0,
+        y: 0
+      }
+    }
   },
   mutations: {
     moveMouseTarget(state, e){
