@@ -7,6 +7,12 @@
                 {{state.headerText}}
             </header>
             <body>
+                <button class="day-btn" :onclick="addPanel">
+                    day ⬜
+                </button>
+                <button class="life-btn">
+
+                </button>
                 
             </body>
 
@@ -17,7 +23,15 @@
 </template>
 
 <script>
+
+import {mapMutations} from "vuex";
+import {createApp} from '@vue/runtime-dom';
+import Panel from "./panel.vue";
+
 export default {
+    components: {
+        Panel
+    },
     methods: {
         makeInvisible(){
             this.state.dimensions.x = 0;
@@ -25,13 +39,25 @@ export default {
             this.state.position.x = -9999;
             this.state.position.y = -9999;
             this.state.headerText = ""
-        }
+        },
+        addPanel($ev){
+            const n = this.panels.length;
+            const wrapper = document.createElement("div");
+            
+            this.addPanelData({e: $ev, type: "day-schedule"}); // creates the data in the $store
 
+            document.body.appendChild(wrapper);
+            createApp(Panel, {id: n, state: this.panels[n]}).use(this.$store).mount(wrapper);
+        },
+        ...mapMutations(["addPanelData"])
     },
 
     computed: {
         state(){
             return this.$store.state.itemPicker;
+        },
+        panels(){
+            return this.$store.state.homePage.dashboard.panels;
         }
     }
 }
@@ -51,17 +77,32 @@ export default {
         display: flex;
         flex-direction: column;
         transition: width 1s, height 1s;
-        background-color: tomato;
+        background-color: white;
+        border-radius: 5px;
+        border: 1px solid var(--border);
     }
 
-    .header{
-        background-color: gray;
-        color: white;
+    header{
+        background-color: var(--dark-tag);
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        color: black;
+        flex: 1;
     }
 
-    .body{
+    body{
         display: flex;
         flex-direction: column;
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        height: 100%;
+        flex: 9
+    }
+    .day-btn{
+        width: 100%;
+        height: 20%;
+
     }
 
 

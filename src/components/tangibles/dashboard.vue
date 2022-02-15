@@ -21,17 +21,7 @@ export default {
         }
     },
     methods: {
-        addPanel($ev){
-            let n = this.numOfPanels;
-            let wrapper = document.createElement("div");
-            
-            this.addPanelData({e: $ev, type: "day-schedule"}); // creates the data in the $store
-
-            document.body.appendChild(wrapper);
-            createApp(Panel, {id: n, state: this.state.panels[n]}).use(this.$store).mount(wrapper);
-
-        },
-        ...mapMutations(["addPanelData", "moveItemPicker"])
+        ...mapMutations(["moveItemPicker"])
     }
 }
 </script>
