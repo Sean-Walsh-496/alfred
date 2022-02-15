@@ -41,6 +41,7 @@ export default {
             this.state.headerText = ""
         },
         addPanel($ev){
+            this.makeInvisible();
             const n = this.panels.length;
             const wrapper = document.createElement("div");
             
