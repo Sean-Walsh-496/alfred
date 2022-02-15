@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard" @click="addPanel"></div>
+    <div class="dashboard" @click="moveItemPicker"></div>
 </template>
 
 
@@ -31,7 +31,7 @@ export default {
             createApp(Panel, {id: n, state: this.state.panels[n]}).use(this.$store).mount(wrapper);
 
         },
-        ...mapMutations(["addPanelData"])
+        ...mapMutations(["addPanelData", "moveItemPicker"])
     }
 }
 </script>

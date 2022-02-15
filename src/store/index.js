@@ -6,7 +6,7 @@ export default createStore({
       down: false,
       target: null
     },
-    picker: {
+    itemPicker: {
       position: {
         x: 0,
         y: 0
@@ -14,7 +14,8 @@ export default createStore({
       dimensions: {
         x: 0,
         y: 0
-      }
+      },
+      headerText: "Pick an item"
     }
   },
   mutations: {
@@ -23,6 +24,15 @@ export default createStore({
         state.mouse.target.move(e.movementX, e.movementY);
       }
     },
+    moveItemPicker(state, e){
+      state.itemPicker.position.x = e.clientX;
+      state.itemPicker.position.y = e.clientY;
+
+      state.itemPicker.dimensions.x = 100;
+      state.itemPicker.dimensions.y = 200;  
+      
+      state.itemPicker.headerText = "Pick an Item";
+    }
   },
   modules: {
     homePage: {
