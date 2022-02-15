@@ -15,6 +15,10 @@ export default createStore({
         x: 0,
         y: 0
       },
+      bufferDimensions: {
+        x: 300,
+        y: 300
+      },
       headerText: "Pick an item"
     }
   },
@@ -25,13 +29,16 @@ export default createStore({
       }
     },
     moveItemPicker(state, e){
-      state.itemPicker.position.x = e.clientX;
-      state.itemPicker.position.y = e.clientY;
+      const picker = state.itemPicker;
+      const {bufferDimensions, dimensions} = picker;
 
-      state.itemPicker.dimensions.x = 100;
-      state.itemPicker.dimensions.y = 200;  
+      picker.dimensions.x = 100;
+      picker.dimensions.y = 200;
+
+      picker.position.x = e.clientX - (bufferDimensions.x - dimensions.x) / 2;
+      picker.position.y = e.clientY - (bufferDimensions.y - dimensions.y) / 2;
       
-      state.itemPicker.headerText = "Pick an Item";
+      picker.headerText = "Pick an Item";
     }
   },
   modules: {
