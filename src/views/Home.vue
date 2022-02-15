@@ -2,6 +2,7 @@
   <div id="main">
     <TaskBar></TaskBar>
     <Dashboard v-bind:state="$store.state.homePage.dashboard"></Dashboard>
+    <ItemPicker/>
   </div>
 </template>
 
@@ -10,12 +11,14 @@
 
 import TaskBar from "../components/tangibles/taskbar.vue";
 import Dashboard from "../components/tangibles/dashboard.vue";
+import ItemPicker from "../components/tangibles/itemPicker.vue";
 
 export default {
   name: 'Home',
   components: {
     TaskBar,
-    Dashboard
+    Dashboard,
+    ItemPicker
   }
 }
 </script>
