@@ -1,5 +1,6 @@
 <template>
-    <div id="item-picker" class="bounding-box" :style="{top: `${state.position.y}px`, left: `${state.position.x}px`}" @mouseleave="makeInvisible">
+    <div id="item-picker" class="bounding-box" :style="{top: `${state.position.y}px`, left: `${state.position.x}px`,
+         height: `${state.bufferDimensions.y}px`, width: `${state.bufferDimensions.x}px`}" @mouseleave="makeInvisible">
 
         <div class="content" :style="{height: `${state.dimensions.y}px`, width: `${state.dimensions.x}px`}">
             <header>
@@ -37,8 +38,6 @@ export default {
 <style scoped>
 
     .bounding-box{
-        height: 300px;
-        width: 300px;
         display: flex;
         justify-content: center;
         align-items: center;
