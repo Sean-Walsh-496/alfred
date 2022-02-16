@@ -3,6 +3,7 @@
     <TaskBar></TaskBar>
     <Dashboard v-bind:state="$store.state.homePage.dashboard"></Dashboard>
     <ItemPicker/>
+    <ActivityPicker/>
   </div>
 </template>
 
@@ -12,13 +13,15 @@
 import TaskBar from "../components/tangibles/taskbar.vue";
 import Dashboard from "../components/tangibles/dashboard.vue";
 import ItemPicker from "../components/tangibles/itemPicker.vue";
+import ActivityPicker from "../components/tangibles/activityPicker.vue";
 
 export default {
   name: 'Home',
   components: {
     TaskBar,
     Dashboard,
-    ItemPicker
+    ItemPicker,
+    ActivityPicker
   }
 }
 </script>
