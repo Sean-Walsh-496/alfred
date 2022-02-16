@@ -1,6 +1,7 @@
 <template>
     <div id="item-picker" class="bounding-box" :style="{top: `${state.position.y}px`, left: `${state.position.x}px`,
-         height: `${state.bufferDimensions.y}px`, width: `${state.bufferDimensions.x}px`}" @mouseleave="makeInvisible">
+         height: `${state.bufferDimensions.y}px`, width: `${state.bufferDimensions.x}px`,
+         visibility: `${state.visibility}`}" @mouseleave="makeInvisible">
 
         <div class="content" :style="{height: `${state.dimensions.y}px`, width: `${state.dimensions.x}px`}">
             <header>
@@ -36,9 +37,13 @@ export default {
         makeInvisible(){
             this.state.dimensions.x = 0;
             this.state.dimensions.y = 0;
+
             this.state.position.x = -9999;
             this.state.position.y = -9999;
-            this.state.headerText = ""
+            
+            this.state.headerText = "";
+
+            this.state.visibility = "hidden";
         },
         addPanel($ev){
             this.makeInvisible();

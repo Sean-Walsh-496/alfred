@@ -19,7 +19,8 @@ export default createStore({
         x: 300,
         y: 300
       },
-      headerText: "Pick an item"
+      headerText: "",
+      visibility: "hidden"
     }
   },
   mutations: {
@@ -63,8 +64,8 @@ export default createStore({
               y: e.pageY
             },
             dimensions: {
-              x: 500,
-              y: 500
+              x: 0,
+              y: 0
             },
             content: {
 
@@ -72,7 +73,8 @@ export default createStore({
             pickedUp: false,
             shadow: "",
             transform: "",
-            zIndex: 0
+            zIndex: 0,
+            transitions: ""
           };
           state.dashboard.panels.push(data);
 
