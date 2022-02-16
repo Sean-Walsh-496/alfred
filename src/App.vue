@@ -23,6 +23,9 @@
   --d-white: #d5deeb;
 }
 
+*{
+  user-select: none;
+}
 
 #app {
   font-family: monospace;
