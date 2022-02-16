@@ -1,6 +1,6 @@
 <template>
     <div class="content" :style="{'border-bottom-color': borderColor}" @click="clicked">
-        
+        <div class="addbtn"> + </div>
     </div>
     
 </template>
@@ -48,6 +48,7 @@ export default {
             createApp(Activity, {parent: this, day: this.parent, state: this.state.content}).use(this.$store).mount(wrapper);
 
         },
+
         ...mapMutations(["addActivity"])
 
     },
@@ -62,6 +63,33 @@ export default {
         border-top: solid var(--border) 1px;
         border-bottom-style: solid;
         border-bottom-width: 1px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .addbtn{
+        border: 1px solid var(--border);
+        border-radius: 20%;
+        font-weight: 900;
+        width: 4%;
+        height: 80%;
+        text-align: center;
+        line-height: 150%;
+        visibility: hidden;
+        transition: transform 0.1s;
+    }
+
+    
+    .content:hover > .addbtn {
+        visibility: visible;
+        transform: scale(1.10);
+    }
+
+
+    .addbtn:hover {
+        transform: scale(1.20);
+
     }
 
 </style>
