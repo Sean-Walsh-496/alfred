@@ -1,7 +1,7 @@
 <template>
     <div class="panel" :style="{top: position[1] + 'px', left: position[0] + 'px', 
          height: dimensions[1] + 'px', width: dimensions[0] + 'px',
-         boxShadow: state.shadow, transform: state.transform, zIndex: state.zIndex}">
+         boxShadow: state.shadow, transform: state.transform, zIndex: state.zIndex, transition: state.transitions}">
 
             <div class="top bar">
                 <DynamicBorder side='N' :parent="this"/>
@@ -38,6 +38,14 @@ export default {
         DynamicBorder,
         DaySchedule
     },
+    mounted(){
+        setTimeout(() => {
+            this.addTransition();
+            this.state.dimensions.x = 500;
+            this.state.dimensions.y = 500;
+        }, 10);
+        this.removeTransition();
+    },
     props: ["id", "state", "type"],
     computed: {
         position(){
@@ -52,6 +60,12 @@ export default {
         
     },
     methods: {
+        addTransition(){
+            this.state.transitions = "height 0.25s, width 0.25s";
+        },
+        removeTransition(){
+            this.state.transitions = "";
+        },
         pickUpChildren(){
             for (let target of this.state.content.hours){
                 if (target.content != null){
@@ -101,11 +115,6 @@ export default {
     .panel {
         position: absolute;
         background: var(--white);
-        /*
-        transition-property: height, width;
-        transition-duration: 0.5s;
-        transition-timing-function: ease-in-out;
-        */
         border: 1px solid var(--border);
         display: flex;
         flex-direction: column;
