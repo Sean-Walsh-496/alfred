@@ -40,6 +40,8 @@ export default createStore({
       picker.position.y = e.clientY - (bufferDimensions.y - dimensions.y) / 2;
       
       picker.headerText = "Pick an Item";
+
+      picker.visibility = "visible";
     }
   },
   modules: {
