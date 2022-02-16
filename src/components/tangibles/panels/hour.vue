@@ -1,6 +1,6 @@
 <template>
-    <div class="content" :style="{'border-bottom-color': borderColor}" @click="clicked">
-        <div class="addbtn"> + </div>
+    <div class="content" :style="{'border-bottom-color': borderColor}">
+        <div class="addbtn" @click="clicked"> + </div>
     </div>
     
 </template>
