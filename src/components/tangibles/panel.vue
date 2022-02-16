@@ -39,12 +39,14 @@ export default {
         DaySchedule
     },
     mounted(){
+        this.addTransition();
         setTimeout(() => {
-            this.addTransition();
             this.state.dimensions.x = 500;
             this.state.dimensions.y = 500;
         }, 10);
-        this.removeTransition();
+        setTimeout(() => {
+            this.removeTransition();
+        }, 1000);
     },
     props: ["id", "state", "type"],
     computed: {
