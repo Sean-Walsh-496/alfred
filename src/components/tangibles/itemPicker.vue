@@ -47,7 +47,7 @@ export default {
         },
         addPanel($ev){
             this.makeInvisible();
-            const type = "life-view";
+            const type = "day-schedule";
             const n = this.panels.length;
             const wrapper = document.createElement("div");
             
