@@ -47,13 +47,14 @@ export default {
         },
         addPanel($ev){
             this.makeInvisible();
+            const type = "life-view";
             const n = this.panels.length;
             const wrapper = document.createElement("div");
             
-            this.addPanelData({e: $ev, type: "life-view"}); // creates the data in the $store
+            this.addPanelData({e: $ev, type: type}); // creates the data in the $store
 
             document.body.appendChild(wrapper);
-            createApp(Panel, {id: n, state: this.panels[n]}).use(this.$store).mount(wrapper);
+            createApp(Panel, {id: n, state: this.panels[n], type: type}).use(this.$store).mount(wrapper);
         },
         ...mapMutations(["addPanelData"])
     },
