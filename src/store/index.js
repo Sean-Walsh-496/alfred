@@ -109,6 +109,9 @@ export default createStore({
             case "day-schedule":
               this.commit("addDayScheduleData", state.dashboard.panels.length - 1);
               break;
+            case "life-view":
+              //put something here
+              break;
           }
 
         },
