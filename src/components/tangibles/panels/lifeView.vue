@@ -1,8 +1,8 @@
 <template>
     <body>
-        <ol class="life" :v-for="i in 80">
-            <ol class="year" :v-for="j in 52">
-                <li class="week"></li>
+        <ol class="life">
+            <ol class="year" v-for="j in 80" :key="j">
+                <li class="week" v-for="i in 52" :key="i"></li>
             </ol>
         </ol>
     </body>
@@ -19,6 +19,7 @@ export default {
 <style scoped>
     ol {
         display: flex;
+        list-style: none;
     }
 
     body {
