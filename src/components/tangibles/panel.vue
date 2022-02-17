@@ -11,6 +11,7 @@
                 <DynamicBorder side='W' :parent="this"/>
                 <div class="content">
                     <DaySchedule :v-if="type == 'day-schedule'" :parent="this" :state="state.content.hours"/>
+                    <LifeView :v-if="type == 'life-view'"/>
                 </div>   
                 <DynamicBorder side='E' :parent="this"/>                             
             </div>
@@ -29,6 +30,7 @@ import DaySchedule from "./panels/daySchedule.vue";
 import moveable from "../abstracts/moveable.js";
 import morpheable from "../abstracts/morpheable.js";
 import snappable from "../abstracts/snappable.js";
+import LifeView from "./panels/lifeView.vue";
 
 export default {
     name: "Panel",
@@ -36,7 +38,8 @@ export default {
     components: {
         Draggable,
         DynamicBorder,
-        DaySchedule
+        DaySchedule,
+        LifeView
     },
     mounted(){
         this.addTransition();
