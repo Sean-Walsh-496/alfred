@@ -1,6 +1,8 @@
 <template>
     <body>
-        <ol class="specifics"></ol>
+        <ol class="specifics">
+
+        </ol>
         <ol class="types">
             <li style="background-color: var(--blue)"><p>Work</p></li>
             <li style="background-color: var(--red)"><p>Hobbies</p></li>
@@ -15,6 +17,11 @@
 
 <script>
 export default {
+    computed: {
+        state(){
+            return this.$store.state.activities;
+        }
+    }
 
 }
 </script>

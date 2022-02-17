@@ -21,6 +21,31 @@ export default createStore({
       },
       headerText: "",
       visibility: "hidden"
+    },
+    activities: {
+      work: [
+        "commute",
+        "work",
+        "meeting",
+        "lunch"
+      ],
+      hobbies: [
+        "instrument",
+        "reading",
+        "TV",
+        "jogging",
+      ],
+      learning: [
+        "homework",
+        "school",
+        "project"
+      ],
+      chores: [
+        "clean",
+        "mow lawn",
+
+      ],
+      custom: [],
     }
   },
   mutations: {
