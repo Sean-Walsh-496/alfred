@@ -20,28 +20,32 @@ export default {
     ol {
         display: flex;
         list-style: none;
+        padding: 0px;
     }
 
     body {
         height: 100%;
         width: 100%;
+        margin: 0px;
     }
 
     .life {
         flex-direction: column;
         height: 100%;
         width: 100%;
+        margin: 0px;
 
     }
 
     .year {
         flex-direction: row;
+        flex: 1
 
     }
 
     .week {
-        height: 10px;
-        width: 10px;
+        height: 100%;
+        width: 2%;
         border: 1px solid var(--border);
 
     }
