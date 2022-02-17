@@ -3,7 +3,6 @@
     <TaskBar></TaskBar>
     <Dashboard v-bind:state="$store.state.homePage.dashboard"></Dashboard>
     <ItemPicker/>
-    <ActivityPicker/>
   </div>
 </template>
 
