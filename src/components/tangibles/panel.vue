@@ -10,8 +10,8 @@
             <div class="body">
                 <DynamicBorder side='W' :parent="this"/>
                 <div class="content">
-                    <DaySchedule :v-if="type == 'day-schedule'" :parent="this" :state="state.content.hours"/>
-                    <LifeView :v-if="type == 'life-view'"/>
+                    <DaySchedule v-if="type == 'day-schedule'" :parent="this" :state="state.content.hours"/>
+                    <LifeView v-if="type == 'life-view'"/>
                 </div>   
                 <DynamicBorder side='E' :parent="this"/>                             
             </div>
